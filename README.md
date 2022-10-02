@@ -2,7 +2,7 @@
 
 This is the one thing that this package will do: 
 
-A one line solution for photographers who are looking to replace their JPEGs with High Efficiency Images(HEIs).
+**A one line solution for photographers who are looking to replace their JPEGs with High Efficiency Images(HEIs).**
 
 An open source wrapper for easy High Efficiency Image (AVIF/HEIC) to and from JPG conversion.
 It is developed for photographers to build a more automatic and space saving pipeline.
