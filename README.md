@@ -2,8 +2,6 @@
 
 **A one line solution for photographers who are looking to replace their JPEGs with High Efficiency Images(HEIs).**
 
-Not published yet! But we are very close :)))
-
 # Introduction
 High Efficiency Image (HEI) - Ya! 
 
@@ -20,15 +18,21 @@ However, there is no easy solution to simply convert JPEG/TIFF to HEIC/AVIF and 
 Heiya is an open source wrapper for easy High Efficiency Image (AVIF/HEIC) to and from JPG conversion.
 It is developed for photographers to build a more automatic and space saving pipeline.
 
+### System Requirements
+Heiya is developed on macOS and isn't tested on Windows or other OS such as Linux.
+
 # Install Heiya
 ### Install from PIP
+
 ```python
-pip install heiya  # Not avaliable yet
+pip install heiya
 ```
 
-### System Requirements
-Due to some of the current dependencies of Heiya only runs on macOS, some features might not be available in Windows.
-Heiya is developed on macOS and isn't tested on Linux or other OS.
+### Upgrade from PIP
+
+```python
+pip install heiya --upgrade
+```
 
 # Examples
 

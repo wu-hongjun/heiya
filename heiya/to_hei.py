@@ -1,24 +1,15 @@
-EXT_TIF = (".tif", ".tiff", ".TIF", ".TIFF")
-EXT_AVIF = (".AVIF", ".avif", ".AV1F", ".av1f")
-EXT_HIF = (".HIF", ".hif", ".HEIF", ".heif", ".HEIC", ".heic")
-EXT_JPG = (".JPG", ".JPEG", ".jpeg", ".jpg")
-
-"""
-Tool 1 Image to High Efficiency Image (AVIF/HIF) Converter Functions
-"""
+# Image to High Efficiency Image (AVIF/HIF) Converter 
 
 from PIL import Image
 import piexif
-import pyheif
 import pillow_heif
-import pyperclip as clip
+
+import heiya.extensions as extensions
+import heiya.tools as tools
 
 import os
-from glob import glob
-from pathlib import Path
-import shutil
-from os import listdir, remove
-from os.path import isfile, join, dirname, basename, exists
+from os import listdir
+from os.path import dirname, basename
 
 
 def convert_image_to_hei(source_image, target_format=".AVIF"):
@@ -39,9 +30,9 @@ def convert_image_to_hei(source_image, target_format=".AVIF"):
     extension = basename(source_image).split(".")[1]
 
     # Register the pillow HEI opener
-    if target_format in EXT_HIF:
+    if target_format in extensions.EXT_HIF:
         pillow_heif.register_heif_opener()
-    elif target_format in EXT_AVIF:
+    elif target_format in extensions.EXT_AVIF:
         pillow_heif.register_avif_opener()
     else:
         raise ValueError("Not a valid target format. Please use .HIF or .AVIF.")
@@ -64,7 +55,7 @@ def convert_image_to_hei(source_image, target_format=".AVIF"):
     return output_file
  
     
-def convert_image_in_dir(source_dir, source_tif=False, source_jpg=True, target_hif=False, target_avif=False):
+def convert_image_in_dir_to_hei(source_dir, source_tif=False, source_jpg=True, target_hif=False, target_avif=False):
     """
     Convert all the files with an extension of ".tif" into target format.
     Args:
@@ -76,10 +67,10 @@ def convert_image_in_dir(source_dir, source_tif=False, source_jpg=True, target_h
         source_list = []
         
         if source_tif:
-            source_list.extend(list(EXT_TIF))
+            source_list.extend(list(extensions.EXT_TIF))
 
         if source_jpg:
-            source_list.extend(list(EXT_JPG))
+            source_list.extend(list(extensions.EXT_JPG))
             
         source_format = tuple(source_list)
 
@@ -115,20 +106,16 @@ def convert_image_in_dir(source_dir, source_tif=False, source_jpg=True, target_h
         print("Error with exception: " + str(e))  
 
 
-
-    
-
-
-
 def convert_all_sub_folders_to_hei(source_dir, source_tif=False, source_jpg=False, 
                             target_hif=False, target_avif=False, depth=2):
     """
     Automatically run the conversion script for a given depth.
     """
-    sub_dirs = find_sub_dirs(source_dir, depth=depth)
+    sub_dirs = tools.find_sub_dirs(source_dir, depth=depth)
     for sub_dir in sub_dirs:
         try:
-            convert_image_in_dir(source_dir, source_tif=source_tif, source_jpg=source_jpg, 
+            convert_image_in_dir_to_hei(sub_dir, source_tif=source_tif, source_jpg=source_jpg, 
                                  target_hif=target_hif, target_avif=target_avif)
         except Exception as e:
             print("Error:", e)
+

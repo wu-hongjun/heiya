@@ -1,0 +1,5 @@
+EXT_TIF = (".tif", ".tiff", ".TIF", ".TIFF")
+EXT_AVIF = (".AVIF", ".avif", ".AV1F", ".av1f")
+EXT_HIF = (".HIF", ".hif", ".HEIF", ".heif", ".HEIC", ".heic")
+EXT_JPG = (".JPG", ".JPEG", ".jpeg", ".jpg")
+EXT_FPN = (".FP3", ".fp3", ".FP2", ".fp2")

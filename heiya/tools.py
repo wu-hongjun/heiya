@@ -1,20 +1,10 @@
-EXT_TIF = (".tif", ".tiff", ".TIF", ".TIFF")
-EXT_AVIF = (".AVIF", ".avif", ".AV1F", ".av1f")
-EXT_HIF = (".HIF", ".hif", ".HEIF", ".heif", ".HEIC", ".heic")
-EXT_JPG = (".JPG", ".JPEG", ".jpeg", ".jpg")
-
-from PIL import Image
-import piexif
-import pyheif
-import pillow_heif
-import pyperclip as clip
+import heiya.extensions as extensions  # heiya library for extensions of a certain file type
 
 import os
 from glob import glob
 from pathlib import Path
-import shutil
 from os import listdir, remove
-from os.path import isfile, join, dirname, basename, exists
+from os.path import exists
 
 def delete_all_ext_in_dir(source_dir, extension):
     """
@@ -45,7 +35,7 @@ def delete_all_ext_in_dir(source_dir, extension):
         print("Error with exception: " + str(e)) 
 
         
-def delete_image_in_dir(source_dir, tif=False, jpg=False, hif=False, avif=False):
+def delete_image_in_dir(source_dir, tif=False, jpg=False, hif=False, avif=False, fpn=False):
     """
     For batch deleting a certain file type in a directory.
     Args:
@@ -55,13 +45,20 @@ def delete_image_in_dir(source_dir, tif=False, jpg=False, hif=False, avif=False)
         hif (boolean): Delete all HIF (HEIC) files in the given directory.
         avif (boolean): Delete all AVIF files in the given directory.
     """
-    if tif: delete_all_ext_in_dir(source_dir, extension=EXT_TIF)
-        
-    if jpg: delete_all_ext_in_dir(source_dir, extension=EXT_JPG)
-        
-    if hif: delete_all_ext_in_dir(source_dir, extension=EXT_HIF)
-        
-    if avif: delete_all_ext_in_dir(source_dir, extension=EXT_AVIF) 
+    # Delete all TIFF files
+    if tif: delete_all_ext_in_dir(source_dir, extension=extensions.EXT_TIF)
+    
+    # Delete all JPEG files
+    if jpg: delete_all_ext_in_dir(source_dir, extension=extensions.EXT_JPG)
+    
+    # Delete all HEIC files
+    if hif: delete_all_ext_in_dir(source_dir, extension=extensions.EXT_HIF)
+    
+    # Delete all AVIF files
+    if avif: delete_all_ext_in_dir(source_dir, extension=extensions.EXT_AVIF)
+
+    # Delete all FP2, FP3 files
+    if fpn: delete_all_ext_in_dir(source_dir, extension=extensions.EXT_FPN)
 
         
 def find_sub_dirs(path, depth=2):
