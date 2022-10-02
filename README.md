@@ -5,8 +5,20 @@ High Efficiency Image (HEI) - Ya!
 Get it?
 
 This is an open source wrapper for easy High Efficiency Image (AVIF/HEIC) to and from JPG conversion.
+For photographers to build a more automatic and space saving pipeline.
 
 Not published yet! But we are very close :)))
+
+# Introduction
+It is unbelieveable that JPEG is from... last century.
+And the majority of cameras in the current age shoot JPG.
+Some can encode using HEIC (iPhone, Fujifilm X-H2S, ...), but that codec is inside a paywall.
+Most cameras do not support AVIF, but it is the future for image codec and many operating system already support AV1 (and therefore AVIF).
+
+HEIC and AVIF are what is called "High Efficiency Images", and can result in file size 10x less than traditional JPEGs.
+However, there is no easy solution to simply convert JPEG/TIFF to HEIC/AVIF and preserve all the metadata.
+
+This is the one thing that this package will do: A one line solution for photographers who are looking to replace their JPGs with HEIs.
 
 # Install Heiya
 
