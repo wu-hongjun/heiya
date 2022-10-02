@@ -18,7 +18,7 @@ setup_args = dict(
     author_email='hw434@cornell.edu',
     keywords=['HEIC', 'AVIF', 'ImageConversion'],
     url='https://github.com/wu-hongjun/heiya',
-    download_url='TBD'
+    download_url='https://pypi.org/project/heiya/'
 )
 
 install_requires = [
@@ -30,7 +30,7 @@ install_requires = [
     'glob',
     'pathlib',
     'Pillow',
-    
+
 ]
 
 if __name__ == '__main__':
