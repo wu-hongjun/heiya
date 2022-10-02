@@ -1,2 +1,7 @@
-# heiya
-[Python] A open source library for easy High Efficiency Image (AVIF/HEIC) &lt;=> JPG conversion.
+# Heiya
+
+High Efficiency Image (HEI) - Ya! 
+
+Get it?
+
+This is an open source library for easy High Efficiency Image (AVIF/HEIC) to and from JPG conversion.
