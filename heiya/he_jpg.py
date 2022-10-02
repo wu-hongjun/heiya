@@ -62,6 +62,7 @@ def convert_jpg_to_he_jpg(source_dir, use_hif=False, use_avif=False, preserve_or
     if use_hif:
         to_hei.convert_image_in_dir_to_hei(source_dir, source_jpg=True, target_hif=True)
         from_hei.convert_hei_in_dir_to_jpg(source_dir, source_hif=True,fix_rotation=True)
+        # TODO: This might become problematic since it will also delete files that wasn't just created but still HIF.
         tools.delete_image_in_dir(source_dir, hif=True)
     elif use_avif:
         to_hei.convert_image_in_dir_to_hei(source_dir, source_jpg=True, target_avif=True)
