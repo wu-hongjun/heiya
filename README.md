@@ -59,14 +59,14 @@ heiya.to_hei.convert_all_sub_folders_to_hei(source_dir, source_tif=False, source
 ### Batch HEI -> JPG in directory
 
 ```python
-heiya.from_hei.convert_hei_in_dir_to_jpg(source_dir, 
-                                         target_hif=False, target_avif=False, fix_rotation=True)
+heiya.from_hei.convert_hei_in_dir_to_jpg(source_dir, target_hif=False, 
+                                         target_avif=False, fix_rotation=True)
 ```
 
 ### Batch JPG -> HEI -> JPG in directory
 ```python
-heiya.tools.convert_jpg_to_he_jpg(source_dir, 
-                                  use_hif=False, use_avif=True, preserve_original_jpg=True)
+heiya.tools.convert_jpg_to_he_jpg(source_dir, use_hif=False, 
+                                  use_avif=True, preserve_original_jpg=True)
 ```
 
 ### Delete files with a specific extension in directory
