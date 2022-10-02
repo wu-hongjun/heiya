@@ -115,8 +115,8 @@ def convert_hei_in_dir(source_dir, source_format=".AVIF", target_format=".JPG", 
         print("Error with exception: " + str(e)) 
         
         
-def convert_hei_in_dir_to_jpg(source_dir, target_hif=False, target_avif=False, fix_rotation=True):
-    if target_hif:
+def convert_hei_in_dir_to_jpg(source_dir, source_hif=False, source_avif=False, fix_rotation=True):
+    if source_hif:
         convert_hei_in_dir(source_dir, source_format=".HIF", target_format=".JPG", fix_rotation=fix_rotation)
-    if target_avif:
+    if source_avif:
         convert_hei_in_dir(source_dir, source_format=".AVIF", target_format=".JPG", fix_rotation=fix_rotation)
