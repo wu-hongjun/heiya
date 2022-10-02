@@ -5,3 +5,68 @@ High Efficiency Image (HEI) - Ya!
 Get it?
 
 This is an open source wrapper for easy High Efficiency Image (AVIF/HEIC) to and from JPG conversion.
+
+Not published yet! But we are very close :)))
+
+# Install Heiya
+
+```python
+pip install heiya  # Not avaliable yet
+```
+
+# Examples
+
+### Getting Started
+```python
+import heiya
+```
+
+### Define Source Directory
+```python
+# Option 1: Define it by yourself
+source_dir = ""
+
+# Option 2: Get the directory directly from the clipboard
+import pyperclip as clip
+
+if source_dir == "":
+    source_dir = clip.paste()
+```
+
+### Batch JPG/TIF -> HEI in directory
+
+```python
+heiya.to_hei.convert_image_in_dir(source_dir, source_tif=False, source_jpg=True, target_hif=False, target_avif=True)
+```
+
+### Batch IMG -> HEI in directory using depth
+```python
+"""
+Example: 
+    /Photos/2022/01/20220105/img1.jpg, ...
+    Then with source_dir = "/Photos":
+        depth = 0 -> "/Photos"
+        depth = 1 -> "/Photos/2022"
+        depth = 2 -> "/Photos/2022/01"
+        depth = 3 -> "/Photos/2022/01/20220105"
+"""
+
+heiya.to_hei.convert_all_sub_folders_to_hei(source_dir, source_jpg=True, target_avif=True, depth=2)
+```
+
+### Batch HEI -> JPG in directory
+
+```python
+heiya.from_hei.convert_hei_in_dir_to_jpg(source_dir, hif=False, avif=True, fix_rotation=True)
+```
+
+### Batch JPG -> HEI -> JPG in directory
+```python
+heiya.tools.convert_jpg_to_he_jpg(source_dir, use_hif=False, use_avif=True, preserve_original_jpg=True)
+```
+
+### Delete files with a specific extension in directory
+```python
+# Workspace cleanup, delete all the TIFF file or JPG in the directory if you don't need them for storage.
+heiya.tools.delete_image_in_dir(source_dir, tif=False, jpg=False)
+```
