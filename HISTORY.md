@@ -2,8 +2,11 @@
 
 NOTE: Not production ready yet.
 
+## [0.1.0] - 2022-10-02
+- Attempting to fix an issue of incorrect param call from `heiya.he_jpg.convert_jpg_to_he_jpg`.
+
 ## [0.0.9] - 2022-10-02
-- Fixed an issue of incorrect param call from `heiya.he_jpg.convert_jpg_to_he_jpg`.
+- Unsuccessful fix for an issue of incorrect param call from `heiya.he_jpg.convert_jpg_to_he_jpg`.
 
 ## [0.0.8] - 2022-10-02
 - Standarized function names for `from_hei` and `to_hei`.
