@@ -1,11 +1,6 @@
 # Heiya
 
-This is the one thing that this package will do: 
-
 **A one line solution for photographers who are looking to replace their JPEGs with High Efficiency Images(HEIs).**
-
-An open source wrapper for easy High Efficiency Image (AVIF/HEIC) to and from JPG conversion.
-It is developed for photographers to build a more automatic and space saving pipeline.
 
 Not published yet! But we are very close :)))
 
@@ -21,6 +16,9 @@ Most cameras do not support AVIF, but it is the future for image codec and many 
 
 HEIC and AVIF are what is called "High Efficiency Images", and can result in file size 10x less than traditional JPEGs.
 However, there is no easy solution to simply convert JPEG/TIFF to HEIC/AVIF and preserve all the metadata.
+
+Heiya is an open source wrapper for easy High Efficiency Image (AVIF/HEIC) to and from JPG conversion.
+It is developed for photographers to build a more automatic and space saving pipeline.
 
 # Install Heiya
 
