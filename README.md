@@ -75,8 +75,8 @@ heiya.to_hei.convert_all_sub_folders_to_hei(source_dir, source_tif=False, source
 ### Batch HEI -> JPG in directory
 
 ```python
-heiya.from_hei.convert_hei_in_dir_to_jpg(source_dir, target_hif=False, 
-                                         target_avif=False, fix_rotation=True)
+heiya.from_hei.convert_hei_in_dir_to_jpg(source_dir, source_hif=False, 
+                                         source_avif=False, fix_rotation=True)
 ```
 
 ### Batch JPG -> HEI -> JPG in directory
