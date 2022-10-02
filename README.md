@@ -21,10 +21,14 @@ Heiya is an open source wrapper for easy High Efficiency Image (AVIF/HEIC) to an
 It is developed for photographers to build a more automatic and space saving pipeline.
 
 # Install Heiya
-
+### Install from PIP
 ```python
 pip install heiya  # Not avaliable yet
 ```
+
+### System Requirements
+Due to some of the current dependencies of Heiya only runs on macOS, some features might not be available in Windows.
+Heiya is developed on macOS and isn't tested on Linux or other OS.
 
 # Examples
 
