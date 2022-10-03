@@ -1,6 +1,9 @@
 # Change log
 
 NOTE: Not production ready yet.
+## [0.1.3] - 2022-10-02
+- Fixed minor bug where the log does not appear properly when transcoding multiple formats.
+  
 ## [0.1.2] - 2022-10-02
 - Renamed `he_jpg.py` to `he_img.py` for better file type support. 
 - Fixed a potential issue that can delete all JPG when using the old `heiya.he_jpg`.

@@ -93,21 +93,22 @@ def convert_image_in_dir_to_hei(source_dir, source_tif=False, source_jpg=True, t
                     log = "TIF -> HIF " + progress + ": " + output_file
                 if source_jpg:
                     log = "JPG -> HIF " + progress + ": " + output_file
+                print(log)
+
             if target_avif:
                 output_file = convert_image_to_hei(source_file_path, ".AVIF")
                 if source_tif:
                     log = "TIF -> AVIF " + progress + ": " + output_file
                 if source_jpg:
                     log = "JPG -> AVIF " + progress + ": " + output_file
-                
-            print(log)
+                print(log)
     
     except Exception as e:
         print("Error with exception: " + str(e))  
 
 
 def convert_all_sub_folders_to_hei(source_dir, source_tif=False, source_jpg=False, 
-                            target_hif=False, target_avif=False, depth=2):
+                            target_hif=False, target_avif=False, depth=0):
     """
     Automatically run the conversion script for a given depth.
     """

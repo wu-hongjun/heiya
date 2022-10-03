@@ -100,11 +100,19 @@ def convert_img_in_dir_to_he_img(source_dir, target_format=".JPG", use_hif=False
     # Filter out hidden cache files starts with "._" created by Capture One
     source_file_list = [file for file in os.listdir(source_dir) if file.endswith(source_format) and not file.startswith("._")] 
 
+    # Keep track of image count for displaying progress
+    image_count = len(source_file_list)
+    image_counter = 0
+
     for source_file in source_file_list:
         source_file_path = os.path.join(source_dir, source_file)
-        convert_img_to_he_img(source_file_path, target_format=target_format, 
+        output_file = convert_img_to_he_img(source_file_path, target_format=target_format, 
                                 use_hif=use_hif, use_avif=use_avif, 
                                 preserve_original_img=preserve_original_img, 
                                 backup_folder_name=backup_folder_name)
+        image_counter += 1
+        progress = str(image_counter) + "/" + str(image_count) + "(" + str(int((image_counter / image_count)*100)) + "%)"
+        log = "Encoding " + target_format + " using" + str(" HIF " if use_hif else " AVIF ") + progress + ": " + output_file
+        print(log)
 
     
