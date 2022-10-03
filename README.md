@@ -31,3 +31,6 @@ pip install heiya --upgrade
 
 A complete set of heiya examples can be found in the [Heiya Demo Notebook](https://github.com/wu-hongjun/heiya/blob/main/heiya_demo.ipynb).
 
+## Update History
+
+A complete update log can be found in the [HISTORY.md](https://github.com/wu-hongjun/heiya/blob/main/HISTORY.md).
