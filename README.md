@@ -37,7 +37,7 @@ A complete set of heiya examples can be found in the [Heiya Demo Notebook](https
 * HEI - High Efficiency Image.
 * Ya - In Chinese, 压(yā) means "to compress".
 
-But mostly just a reference to uncle Roger's "Heiya" when Jamie Oliver rinse the rice with tap water.
+But mostly just a reference to uncle Roger's "Heiya" when Jamie Oliver rinse cooked rice with tap water (smh).
 
 ## Update History
 
