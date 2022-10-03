@@ -21,7 +21,7 @@ HEIC and AVIF are what are called "High-Efficiency Images" (You can read about t
 
 ## Install Heiya from PyPI
 * Heiya is developed and tested on macOS and hasn't been tested on Linux.
-* As for now, Heiya depends on `pyheif` which does not support Windows, therefore for now heiya is not compatible with Windows.
+* The current implementation of Heiya depends on `pyheif` which does not support Windows, therefore it is not compatible with Windows.
   
 ```python
 pip install heiya
