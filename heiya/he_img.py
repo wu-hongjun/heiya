@@ -8,6 +8,12 @@ import shutil
 from os.path import dirname, basename
 
 def preserve_original(source_img, backup_folder_name="original"):
+    """
+    Save a copy of the input source_img into a folder in the same directory with the name backup_folder_name.
+    Args:
+        source_img (str): The path of an image to make backup of (can be other files too).
+        backup_folder_name (str): The name of the folder to put the replicated file in.
+    """
     # Separate a full file path into directory, file name, and extension
     directory = dirname(source_img)
     full_file_name = basename(source_img)
@@ -61,6 +67,16 @@ def preserve_all_original_in_dir(source_dir, extension=".JPG", backup_folder_nam
         
 
 def convert_img_to_he_img(source_image, target_format=".JPG", use_hif=False, use_avif=False, preserve_original_img=True, backup_folder_name="original"):
+    """
+    Convert one image to High Efficiency Image.
+    That is, take an image (probably a JPG), encode it using one of the HEI codec, and encode it back to JPG.
+    Args:
+        source_image (str): The location of the input image.
+        target_format (str): The target format you desire to convert the input to.
+        use_hif (boolean): Use the HEIC codec to encode the image.
+        use_avif (boolean): Use the AVIF codec to encode the image.
+        preserve_original_img (boolean): Whether to save a backup of the original image in case it gets overwritten.
+    """
     if preserve_original_img:
         preserve_original(source_image, backup_folder_name=backup_folder_name)
 
@@ -80,7 +96,10 @@ def convert_img_in_dir_to_he_img(source_dir, target_format=".JPG", use_hif=False
     Convert JPG to JPG using high efficiency codec.
     Args:
         source_dir (str): A directory that contain jpg files.
-        use_codec (int): 0 will use HIF. 1 will use AVIF.
+        target_format (str): The target format you desire to convert the input to.
+        use_hif (boolean): Use the HEIC codec to encode the image.
+        use_avif (boolean): Use the AVIF codec to encode the image.
+        preserve_original_img (boolean): Whether to save a backup of the original image in case it gets overwritten.
     """
     if not use_hif and not use_avif:
         raise ValueError("No codec is selected, please use a codec to proceed.")

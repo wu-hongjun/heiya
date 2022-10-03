@@ -15,7 +15,7 @@ def convert_hei_to_image(source_hei, target_format=".JPG", fix_rotation=True):
     Convert a HEI (High Efficiency Image) file (.AVIF or .HIF) into .JPG
     
     Args:
-        source_tif (str): A full file path of a .HIF image.
+        source_hei (str): A full file path of an image.
         target_format (str): The target format you want to convert to, by default use ".JPG"
         fix_rotation (boolean): The conversion might mess up the rotation of the image, this can help fix the issue.
     Returns:
@@ -74,7 +74,7 @@ def convert_hei_in_dir_to_image(source_dir, source_format=".AVIF", target_format
         source_format (str): The type of files to convert from. 
                             This will convert all related files (i.e. ".HIF" will convert all .HIF .HEIC .HEIF)
                             Not very elegant, to be improved in the future.
-        target_format (str or tuple): The target format you want to convert to, by default use ".AVIF"
+        target_format (str or tuple): The target format you want to convert to, by default use ".JPG"
         fix_rotation (boolean): The conversion might mess up the rotation of the image, this can help fix the issue.
     """
     try:

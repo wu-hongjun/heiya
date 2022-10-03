@@ -18,8 +18,8 @@ def convert_image_to_hei(source_image, target_format=".AVIF"):
     This conversion preserves all the image metadata.
     
     Args:
-        source_tif (str): A full file path of a .TIF image.
-        target_format (str): The target format you want to convert to, by default use ".HIF"
+        source_image (str): A full file path of an image.
+        target_format (str): The target format you want to convert to, by default use ".AVIF"
         
     Returns:
         (str) Full file path of the generated file.
@@ -57,10 +57,13 @@ def convert_image_to_hei(source_image, target_format=".AVIF"):
     
 def convert_image_in_dir_to_hei(source_dir, source_tif=False, source_jpg=True, target_hif=False, target_avif=False):
     """
-    Convert all the files with an extension of ".tif" into target format.
+    Convert all the files with an extension of ".tif" or ".jpg" into target format.
     Args:
-        source_dir (str): A directory that contain tif files.
-        target_format (str or tuple): The target format you want to convert to, by default use ".HIF"
+        source_dir (str): A directory that contain image files.
+        source_tif (boolean): Use all the TIF files in the directory as input.
+        source_jpg (boolean): Use all the JPG files in the directory as input.
+        target_hif (boolean): Convert the input image to HIF.
+        target_avif (boolean): Convert the input image to AVIF.
     """
     try:
         # Filter out hidden cache files starts with "._" created by Capture One
@@ -111,6 +114,13 @@ def convert_all_sub_folders_to_hei(source_dir, source_tif=False, source_jpg=Fals
                             target_hif=False, target_avif=False, depth=0):
     """
     Automatically run the conversion script for a given depth.
+    Args:
+        source_dir (str): A directory that contain image files.
+        source_tif (boolean): Use all the TIF files in the directory as input.
+        source_jpg (boolean): Use all the JPG files in the directory as input.
+        target_hif (boolean): Convert the input image to HIF.
+        target_avif (boolean): Convert the input image to AVIF.
+        depth (int): The layer of sub directory to run the program in.
     """
     sub_dirs = tools.find_sub_dirs(source_dir, depth=depth)
     for sub_dir in sub_dirs:

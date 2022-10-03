@@ -1,5 +1,8 @@
 # Change log
 
+## [0.1.4] - 2022-10-03
+- Rewrote some of the old comments and docstring that doesn't make sense anymore.
+  
 ## [0.1.3] - 2022-10-02
 - Fixed minor bug where the log does not appear properly when transcoding multiple formats.
   
