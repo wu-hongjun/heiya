@@ -33,8 +33,9 @@ pip install heiya --upgrade
 A complete set of heiya examples can be found in the [Heiya Demo Notebook](https://github.com/wu-hongjun/heiya/blob/main/heiya_demo.ipynb).
 
 # What does the name mean?
-HEI- High Efficiency Image.
-Ya - In Chinese, 压(yā) means "to compress".
+
+* HEI - High Efficiency Image.
+* Ya - In Chinese, 压(yā) means "to compress".
 
 But mostly just a reference to uncle Roger's "Heiya" when Jamie Oliver rinse the rice with tap water.
 
