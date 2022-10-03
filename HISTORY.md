@@ -1,6 +1,5 @@
 # Change log
 
-NOTE: Not production ready yet.
 ## [0.1.3] - 2022-10-02
 - Fixed minor bug where the log does not appear properly when transcoding multiple formats.
   
