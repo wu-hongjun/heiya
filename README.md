@@ -10,6 +10,7 @@ It is developed for photographers with a storage budget (like myself, lol) to bu
 ***
 
 JPEG was invented six years before my existence.
+
 And yet, the majority of cameras in the current age still shoot JPEG.
 
 HEIC and AVIF are what are called "High-Efficiency Images" (You can read about them here: [AVIF vs HEIC](https://www.winxdvd.com/ios-android-mobile/avif-vs-heic.htm)). 
