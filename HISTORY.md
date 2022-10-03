@@ -1,6 +1,10 @@
 # Change log
 
 NOTE: Not production ready yet.
+## [0.1.2] - 2022-10-02
+- Renamed `he_jpg.py` to `he_img.py` for better file type support. 
+- Fixed a potential issue that can delete all JPG when using the old `heiya.he_jpg`.
+  
 ## [0.1.1] - 2022-10-02
 - Wrote a more intuitive `READEME.md`, and updated `haiya_demo.ipynb` on Github.
 
