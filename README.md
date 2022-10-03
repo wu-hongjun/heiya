@@ -10,6 +10,7 @@ It is developed for photographers with a storage budget (like myself, lol) to bu
 ***
 
 JPEG was invented six years before my existence.
+I'm now 24, graduating from my double Master's degree next summer.
 
 And yet, the majority of cameras in the current age still shoot JPEG.
 
