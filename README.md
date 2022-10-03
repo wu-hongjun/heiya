@@ -1,95 +1,32 @@
 # Heiya
 
-**A one line solution for photographers who are looking to replace their JPEGs with High Efficiency Images(HEIs).**
+> **A one-line solution for photographers to simply convert JPEG into HEIC/AVIF and preserve all the metadata.**
 
-# Introduction
-High Efficiency Image (HEI) - Ya! 
+## Introduction
+Heiya allows you to easily translate between JPG/TIFF and HEIC/AVIF, without losing image metadata such as geotag and lens information. All the common operations can be done using one line of code.
 
-Get it?
+It is developed for photographers with a storage budget (like myself, lol) to build an automatic and efficient image storage pipeline.
 
-It is unbelieveable that JPEG is from... last century.
-And the majority of cameras in the current age shoot JPG.
-Some can encode using HEIC (iPhone, Fujifilm X-H2S, ...), but that codec is inside a paywall.
-Most cameras do not support AVIF, but it is the future for image codec and many operating system already support AV1 (and therefore AVIF).
+***
 
-HEIC and AVIF are what is called "High Efficiency Images", and can result in file size 10x less than traditional JPEGs.
-However, there is no easy solution to simply convert JPEG/TIFF to HEIC/AVIF and preserve all the metadata.
+JPEG was invented six years before my existence.
+And yet, the majority of cameras in the current age still shoot JPEG.
 
-Heiya is an open source wrapper for easy High Efficiency Image (AVIF/HEIC) to and from JPG conversion.
-It is developed for photographers to build a more automatic and space saving pipeline.
+HEIC and AVIF are what are called "High-Efficiency Images" (You can read about them here: [AVIF vs HEIC](https://www.winxdvd.com/ios-android-mobile/avif-vs-heic.htm)). 
+* These are the future of media formats, JPEG is getting deprecated.
+* They can result in a file size of as much as 100x less than traditional JPEGs.
+* Devices and operating systems now have good support for both formats.
+* However, there are no free and easy-to-use tools out there to simply encode all the JPEGs my camera took into AVIFs while preserving metadata.
 
-### System Requirements
-Heiya is developed on macOS and isn't tested on Windows or other OS such as Linux.
-
-# Install Heiya
-### Install from PIP
-
+## Install Heiya from PyPI
+* Heiya is developed on macOS and hasn't been tested on Windows or other OS such as Linux.
+  
 ```python
 pip install heiya
-```
-
-### Upgrade from PIP
-
-```python
 pip install heiya --upgrade
 ```
 
-# Examples
+## Examples
 
-### Getting Started
-```python
-import heiya
-```
+A complete set of heiya examples can be found in the [Heiya Demo Notebook](https://github.com/wu-hongjun/heiya/blob/main/heiya_demo.ipynb).
 
-### Define Source Directory
-```python
-# Option 1: Define it by yourself
-source_dir = ""
-
-# Option 2: Get the directory directly from the clipboard
-import pyperclip as clip
-
-if source_dir == "":
-    source_dir = clip.paste()
-```
-
-### Batch JPG/TIF -> HEI in directory
-
-```python
-heiya.to_hei.convert_image_in_dir(source_dir, source_tif=False, source_jpg=True, 
-                                  target_hif=False, target_avif=True)
-```
-
-### Batch IMG -> HEI in directory using depth
-```
-Example: 
-    /Photos/2022/01/20220105/img1.jpg, ...
-    Then with source_dir = "/Photos":
-        depth = 0 -> "/Photos"
-        depth = 1 -> "/Photos/2022"
-        depth = 2 -> "/Photos/2022/01"
-        depth = 3 -> "/Photos/2022/01/20220105"
-```
-
-```python
-heiya.to_hei.convert_all_sub_folders_to_hei(source_dir, source_tif=False, source_jpg=False, 
-                                            target_hif=False, target_avif=False, depth=2)
-```
-
-### Batch HEI -> JPG in directory
-
-```python
-heiya.from_hei.convert_hei_in_dir_to_jpg(source_dir, source_hif=False, 
-                                         source_avif=False, fix_rotation=True)
-```
-
-### Batch JPG -> HEI -> JPG in directory
-```python
-heiya.tools.convert_jpg_to_he_jpg(source_dir, use_hif=False, 
-                                  use_avif=True, preserve_original_jpg=True)
-```
-
-### Delete files with a specific extension in directory
-```python
-heiya.tools.delete_image_in_dir(source_dir, tif=False, jpg=False, hif=False, avif=False)
-```

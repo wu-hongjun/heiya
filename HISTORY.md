@@ -1,6 +1,8 @@
 # Change log
 
 NOTE: Not production ready yet.
+## [0.1.1] - 2022-10-02
+- Wrote a more intuitive `READEME.md`, and updated `haiya_demo.ipynb` on Github.
 
 ## [0.1.0] - 2022-10-02
 - Attempting to fix an issue of incorrect param call from `heiya.he_jpg.convert_jpg_to_he_jpg`.
