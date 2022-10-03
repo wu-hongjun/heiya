@@ -34,3 +34,6 @@ A complete set of heiya examples can be found in the [Heiya Demo Notebook](https
 ## Update History
 
 A complete update log can be found in the [HISTORY.md](https://github.com/wu-hongjun/heiya/blob/main/HISTORY.md).
+
+## License
+Heiya is distributed with the license in [LICENSE.txt](https://github.com/wu-hongjun/heiya/blob/main/LICENSE.txt).
