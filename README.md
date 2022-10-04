@@ -22,7 +22,7 @@ HEIC and AVIF are what are called "High-Efficiency Images" (You can read about t
 
 ## Install Heiya from PyPI
 * Heiya is developed and tested on macOS and hasn't been tested on Linux.
-* Help Needed: The current implementation of Heiya depends on `pyheif` which does not support Windows, therefore it is not compatible with Windows, alternate implementation or suggestion is appreciated.
+* It currently doesn't support Windows.
   
 ```python
 pip install heiya
@@ -32,6 +32,10 @@ pip install heiya --upgrade
 ## Examples
 
 A complete set of heiya examples can be found in the [Heiya Demo Notebook](https://github.com/wu-hongjun/heiya/blob/main/heiya_demo.ipynb).
+
+## To-Do & Help Needed
+* Seek alternative for `pyheif` (Which is why Heiya does not support Windows).
+* Attempt an implementation using `imagemagick` to enable bitrate higher than the current 8 bit.
 
 ## What does the name mean?
 
