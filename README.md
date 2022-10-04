@@ -21,7 +21,7 @@ HEIC and AVIF are what are called "High-Efficiency Images" (You can read about t
 * However, there are no free and easy-to-use tools out there to simply encode all the JPEGs my camera took into AVIFs while preserving metadata.
 
 ## Install Heiya from PyPI
-* Heiya is developed and tested on macOS and hasn't been tested on Linux, it doesn't support Windows for now.
+Heiya is developed and tested on macOS and hasn't been tested on Linux, it doesn't support Windows for now.
   
 ```python
 pip install heiya
