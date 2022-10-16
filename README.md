@@ -3,7 +3,7 @@
 > **A one-line solution for photographers to simply convert JPEG into HEI(High Efficiency Image) with HEIC/AVIF and preserve all the metadata.**
 
 ## Introduction
-Heiya allows you to easily translate between JPG/TIFF and HEIC/AVIF, without losing image metadata such as geotag and lens information. All the common operations can be done using one line of code.
+Heiya allows you to easily translate between JPG/TIFF and AVIF/HEIC, without losing image metadata such as geotag and lens information. All the common operations can be done using one line of code.
 
 It is developed for photographers with a storage budget (like myself, lol) to build an automatic and efficient image storage pipeline.
 
@@ -14,7 +14,7 @@ I'm now 24, graduating from my double Master's degree next summer.
 
 And yet, the majority of cameras in the current age still shoot JPEG.
 
-HEIC and AVIF are what are called "High-Efficiency Images" (You can read about them here: [AVIF vs HEIC](https://www.winxdvd.com/ios-android-mobile/avif-vs-heic.htm)). 
+AVIF and HEIC are what are called "High-Efficiency Images" (You can read about them here: [AVIF vs HEIC](https://www.winxdvd.com/ios-android-mobile/avif-vs-heic.htm)). 
 * These are the future of media formats, JPEG is getting deprecated.
 * They can result in a file size of as much as 100x less than traditional JPEGs.
 * Devices and operating systems now have good support for both formats.
