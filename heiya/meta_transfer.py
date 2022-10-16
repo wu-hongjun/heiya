@@ -44,7 +44,7 @@ def batch_img_meta_transfer(source_image, target_image, replace_original=False, 
     if type(target_image) == "str":
         img_meta_transfer(source_image, target_image, replace_original, postpend, lens_model)
     elif isinstance(target_image, list):
-        for image in source_image:
+        for image in target_image:
             img_meta_transfer(source_image, image, replace_original, postpend, lens_model)
     else:
         raise ValueError("Unknown type target image.")

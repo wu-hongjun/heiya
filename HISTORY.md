@@ -1,5 +1,8 @@
 # Change log
 
+## [1.2.4] - 2022-10-15
+- Fixed an issue for not being able to correctly start batch process for meta transfer.
+
 ## [1.2.3] - 2022-10-15
 - Fixed an issue for not being able to detect type list.
 
