@@ -1,5 +1,23 @@
 # Change log
 
+## [1.2.3] - 2022-10-15
+- Fixed an issue for not being able to detect type list.
+
+## [1.2.2] - 2022-10-15
+- Fixed a minor issue for meta transfer not being able to properly loaded to the machine.
+
+## [1.2.1] - 2022-10-15
+- Fixed a minor issue for meta transfer not being able to properly loaded to the machine. (Fix did not work)
+
+## [1.2.0] - 2022-10-15
+- Added `meta_transfer.batch_img_meta_transfer()` for batch film digitizing workflow.
+
+## [1.1.0] - 2022-10-15
+- Added `meta_transfer.img_meta_transfer()` for easier film digitizing workflow.
+
+## [1.0.0] - 2022-10-04
+- First official release, with all the code cleaned up and properly documented. 
+  
 ## [0.1.4] - 2022-10-03
 - Rewrote some of the old comments and docstring that doesn't make sense anymore.
   
