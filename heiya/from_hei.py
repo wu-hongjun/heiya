@@ -2,7 +2,9 @@
 
 from PIL import Image
 import piexif
-import pyheif
+# import pyheif
+
+import pillow_heif
 
 import heiya.extensions as extensions
 
@@ -53,6 +55,50 @@ def convert_hei_to_image(source_hei, target_format=".JPG", fix_rotation=True):
         exif_dict['0th'][274] = 1
         
     meta = piexif.dump(exif_dict)
+    
+    # Construct output file name
+    output_file = directory + "/" + file_name + target_format
+
+    # Save new image
+    if meta:
+        image.save(output_file, exif=meta)
+    else:
+        image.save(output_file)
+    
+    return output_file
+
+
+def convert_hei_to_image_new(source_hei, target_format=".JPG", fix_rotation=True):
+    """
+    Convert a HEI (High Efficiency Image) file (.AVIF or .HIF) into .JPG
+    
+    Args:
+        source_hei (str): A full file path of an image.
+        target_format (str): The target format you want to convert to, by default use ".JPG"
+        fix_rotation (boolean): The conversion might mess up the rotation of the image, this can help fix the issue.
+    Returns:
+        (str) Full file path of the generated file.
+    """
+    
+    # Separate a full file path into directory, file name, and extension
+    directory = dirname(source_hei)
+    file_name  = basename(source_hei).split(".")[0] 
+    extension = basename(source_hei).split(".")[1]
+
+    # Register the pillow HEI opener
+    if extension in extensions.EXT_HIF:
+        pillow_heif.register_heif_opener()
+    elif extension in extensions.EXT_AVIF:
+        pillow_heif.register_avif_opener()
+    else:
+        raise ValueError(str(extension) + " is not a valid input format. Please use .HIF or .AVIF.")
+
+    
+    # Read HEI file
+    # Note: pillow_heif can handle both heif and avif
+    image = Image.open(source_hei)  
+    image.verify()
+    meta = image.getexif()
     
     # Construct output file name
     output_file = directory + "/" + file_name + target_format
