@@ -2,7 +2,7 @@
 
 from PIL import Image
 import piexif
-# import pyheif
+import pyheif  # Deprecating
 
 import pillow_heif
 
