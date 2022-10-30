@@ -35,14 +35,14 @@ def delete_all_ext_in_dir(source_dir, extension):
         print("Error with exception: " + str(e)) 
 
         
-def delete_image_in_dir(source_dir, tif=False, jpg=False, hif=False, avif=False, fpn=False):
+def delete_image_in_dir(source_dir, tif=False, jpg=False, heif=False, avif=False, fpn=False):
     """
     For batch deleting a certain file type in a directory.
     Args:
         source_dir (str): A directory that contain files.
         tif (boolean): Delete all TIF files in the given directory.
         jpg (boolean): Delete all JPG files in the given directory.
-        hif (boolean): Delete all HIF (HEIC) files in the given directory.
+        heif (boolean): Delete all HEIF (HEIC) files in the given directory.
         avif (boolean): Delete all AVIF files in the given directory.
     """
     # Delete all TIFF files
@@ -52,7 +52,7 @@ def delete_image_in_dir(source_dir, tif=False, jpg=False, hif=False, avif=False,
     if jpg: delete_all_ext_in_dir(source_dir, extension=extensions.EXT_JPG)
     
     # Delete all HEIC files
-    if hif: delete_all_ext_in_dir(source_dir, extension=extensions.EXT_HIF)
+    if heif: delete_all_ext_in_dir(source_dir, extension=extensions.EXT_HEIF)
     
     # Delete all AVIF files
     if avif: delete_all_ext_in_dir(source_dir, extension=extensions.EXT_AVIF)

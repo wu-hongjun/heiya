@@ -1,4 +1,4 @@
-# High Efficiency Image (AVIF/HIF) to JPG Converter 
+# High Efficiency Image (AVIF/HEIF) to JPG Converter 
 
 from PIL import Image
 import piexif
@@ -12,13 +12,13 @@ import os
 from os import listdir
 from os.path import dirname, basename
 
-def convert_hei_to_image(source_hei, target_format=".JPG", fix_rotation=True):
+def convert_hei_to_image(source_hei, target_format=0, fix_rotation=True):
     """
-    Convert a HEI (High Efficiency Image) file (.AVIF or .HIF) into .JPG
+    Convert a HEI (High Efficiency Image) file (.AVIF or .HEIF) into .JPG
     
     Args:
         source_hei (str): A full file path of an image.
-        target_format (str): The target format you want to convert to, by default use ".JPG"
+        target (int): 0=JPG 1=TIF
         fix_rotation (boolean): The conversion might mess up the rotation of the image, this can help fix the issue.
     Returns:
         (str) Full file path of the generated file.
@@ -57,7 +57,12 @@ def convert_hei_to_image(source_hei, target_format=".JPG", fix_rotation=True):
     meta = piexif.dump(exif_dict)
     
     # Construct output file name
-    output_file = directory + "/" + file_name + target_format
+    if target_format == 0:
+        output_file = directory + "/" + file_name + ".JPG"
+    elif target_format == 1:
+        output_file = directory + "/" + file_name + ".TIF"
+    else:
+        raise ValueError("Not a valid target type. For target: 0=JPG 1=TIF.")
 
     # Save new image
     if meta:
@@ -68,13 +73,13 @@ def convert_hei_to_image(source_hei, target_format=".JPG", fix_rotation=True):
     return output_file
 
 
-def convert_hei_to_image_new(source_hei, target_format=".JPG", fix_rotation=True):
+def convert_hei_to_image_new(source_hei, target_format=0, fix_rotation=True):
     """
-    Convert a HEI (High Efficiency Image) file (.AVIF or .HIF) into .JPG
+    Convert a HEI (High Efficiency Image) file (.AVIF or .HEIF) into (JPG/TIF)
     
     Args:
         source_hei (str): A full file path of an image.
-        target_format (str): The target format you want to convert to, by default use ".JPG"
+        target_format (int): The target format you want to convert to. 0 = JPG, 1 = TIF.
         fix_rotation (boolean): The conversion might mess up the rotation of the image, this can help fix the issue.
     Returns:
         (str) Full file path of the generated file.
@@ -86,12 +91,12 @@ def convert_hei_to_image_new(source_hei, target_format=".JPG", fix_rotation=True
     extension = basename(source_hei).split(".")[1]
 
     # Register the pillow HEI opener
-    if extension in extensions.EXT_HIF:
+    if extension in extensions.EXT_HEIF:
         pillow_heif.register_heif_opener()
     elif extension in extensions.EXT_AVIF:
         pillow_heif.register_avif_opener()
     else:
-        raise ValueError(str(extension) + " is not a valid input format. Please use .HIF or .AVIF.")
+        raise ValueError(str(extension) + " is not a valid input format. Please use .HEIF or .AVIF.")
 
     
     # Read HEI file
@@ -101,7 +106,12 @@ def convert_hei_to_image_new(source_hei, target_format=".JPG", fix_rotation=True
     meta = image.getexif()
     
     # Construct output file name
-    output_file = directory + "/" + file_name + target_format
+    if target_format == 0:
+        output_file = directory + "/" + file_name + ".JPG"
+    elif target_format == 1:
+        output_file = directory + "/" + file_name + ".TIF"
+    else:
+        raise ValueError("Not a valid target type. For target: 0=JPG 1=TIF.")
 
     # Save new image
     if meta:
@@ -112,25 +122,30 @@ def convert_hei_to_image_new(source_hei, target_format=".JPG", fix_rotation=True
     return output_file
     
     
-def convert_hei_in_dir_to_image(source_dir, source_format=".AVIF", target_format=".JPG", fix_rotation=True):
+def convert_hei_in_dir_to_image(source_dir, source_format=0, target_format=0, fix_rotation=True):
     """
-    Convert all the files with an extension of ".tif" into target format.
+    Convert all the HEI files into normal image (JPG/TIF).
     Args:
         source_dir (str): A directory that contain tif files.
-        source_format (str): The type of files to convert from. 
-                            This will convert all related files (i.e. ".HIF" will convert all .HIF .HEIC .HEIF)
-                            Not very elegant, to be improved in the future.
-        target_format (str or tuple): The target format you want to convert to, by default use ".JPG"
+        source_format (int): The type of files to convert from. 0 = AVIF, 1 = HEIF.
+        target_format (int): The target format you want to convert to. 0 = JPG, 1 = TIF.
         fix_rotation (boolean): The conversion might mess up the rotation of the image, this can help fix the issue.
     """
     try:
-        # Get all HIF files
-        if source_format in extensions.EXT_AVIF:
+        # Get all HEI files
+        if source_format == 0:
             hei_format = extensions.EXT_AVIF
-        elif source_format in extensions.EXT_HIF:
-            hei_format = extensions.EXT_HIF
+        elif source_format == 1:
+            hei_format = extensions.EXT_HEIF
         else:
             raise ValueError("Not a valid source format.")
+
+        if target_format == 0:
+            target_ext = ".jpg"
+        elif target_format == 1:
+            target_ext = ".tif"
+        else:
+            raise ValueError("Not a valid target format.")
             
         hei_file_list = [file for file in listdir(source_dir) if file.endswith(hei_format) and not file.startswith("._")]  
 
@@ -141,27 +156,25 @@ def convert_hei_in_dir_to_image(source_dir, source_format=".AVIF", target_format
         # Manipulate each tif image
         for hei_file in hei_file_list:
             hei_file_path = os.path.join(source_dir, hei_file)
-            output_file = convert_hei_to_image(hei_file_path, target_format, fix_rotation=fix_rotation)
+            output_file = convert_hei_to_image(hei_file_path, target_ext, fix_rotation=fix_rotation)
 
             image_counter += 1
             progress = str(image_counter) + "/" + str(image_count) + "(" + str(int((image_counter / image_count)*100)) + "%)"
-            log = source_format + " -> " + target_format + " " + progress + ": " + output_file
+            log = source_format + " -> " + target_ext + " " + progress + ": " + output_file
             print(log)
     
     except Exception as e:
         print("Error with exception: " + str(e)) 
         
         
-def convert_hei_in_dir_to_jpg(source_dir, source_hif=False, source_avif=False, fix_rotation=True):
+def convert_hei_in_dir_to_jpg(source_dir, source_format=0, fix_rotation=True):
     """
     Call method from the user to specify which file format in a directory to convert to JPG.
     Args:
         source_dir (str): A directory that contain tif files.
-        source_hif (boolean): If true, convert all the HIF formats inside the directory into JPG
+        source_heif (boolean): If true, convert all the HEIF formats inside the directory into JPG
         source_avif (boolean): If true, convert all the AVIF formats inside the directory into JPG
         fix_rotation (boolean): The conversion might mess up the rotation of the image, this can help fix the issue.
     """
-    if source_hif:
-        convert_hei_in_dir_to_image(source_dir, source_format=".HIF", target_format=".JPG", fix_rotation=fix_rotation)
-    if source_avif:
-        convert_hei_in_dir_to_image(source_dir, source_format=".AVIF", target_format=".JPG", fix_rotation=fix_rotation)
+    
+    convert_hei_in_dir_to_image(source_dir, source_format=source_format, target_format=0, fix_rotation=fix_rotation)
