@@ -1,5 +1,9 @@
 # Change log
 
+## [2.0.0] - 2022-10-30
+- Refactored code for better expandability going forward.
+- Note that this version is not compatible with the previous version, as many functions now have new arguments.
+
 ## [1.2.4] - 2022-10-15
 - Fixed an issue for not being able to correctly start batch process for meta transfer.
 
