@@ -12,3 +12,6 @@
 
 ### Upload Package
 `python3 -m twine upload dist/*`
+
+### Delete Distributed Binaries
+`rm -r ./dist`
