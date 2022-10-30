@@ -170,6 +170,7 @@ def convert_hei_in_dir_to_image(source_dir, source_format=0, target_format=0, fi
 def convert_hei_in_dir_to_jpg(source_dir, source_format=0, fix_rotation=True):
     """
     Call method from the user to specify which file format in a directory to convert to JPG.
+    Kinda useless at this point to be honest since now the function call for convert_hei_in_dir_to_image is simple.
     Args:
         source_dir (str): A directory that contain tif files.
         source_heif (boolean): If true, convert all the HEIF formats inside the directory into JPG
