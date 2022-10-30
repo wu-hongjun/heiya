@@ -28,8 +28,8 @@ pip install heiya
 ```
 
 ## Examples
-
-A complete set of heiya examples can be found in the [Heiya Demo Notebook](https://github.com/wu-hongjun/heiya/blob/main/heiya_demo.ipynb).
+* If you just want to convert your JPG to AVIF/HEIF, check out the [Heiya Basic Demo Notebook](https://github.com/wu-hongjun/heiya/blob/main/heiya_basic_demo.ipynb).
+* A complete set of heiya examples can be found in the [Heiya Full Demo Notebook](https://github.com/wu-hongjun/heiya/blob/main/heiya_full_demo.ipynb).
 
 ## To-Do & Help Needed
 * Seek alternative for `pyheif` (Which is why Heiya does not support Windows).
