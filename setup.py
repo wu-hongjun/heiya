@@ -8,7 +8,7 @@ with open('HISTORY.md') as history_file:
 
 setup_args = dict(
     name='heiya',
-    version='2.0.0',
+    version='2.1.0',
     description='Convert between image and High Efficiency Image (HEIC/AVIF) with ease.',
     long_description_content_type="text/markdown",
     long_description=README + '\n\n' + HISTORY,

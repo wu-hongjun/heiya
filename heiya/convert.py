@@ -144,17 +144,18 @@ def normal_img_convertion(source_image, target_format=0, preserve_original_img=T
     Simple function to convert normal images.
     Note that this currently does not maintain metadata.
 
-    source_image (str): The location of the input image.
-    target_format (int): The target format you desire to convert the input to. 0, 1, 2, 3 = JPG, TIF, PNG, WEBP
-    preserve_original_img (boolean): If False, delete the source image.
+    Args:
+        source_image (str): The location of the input image.
+        target_format (int): The target format you desire to convert the input to. 0, 1, 2, 3 = JPG, TIF, PNG, WEBP
+        preserve_original_img (boolean): If False, delete the source image.
     """
     # Separate a full file path into directory, file name, and extension.
     directory = dirname(source_image)
     file_name  = basename(source_image).split(".")[0] 
-    extension = basename(source_image).split(".")[1]
+    extension = "." + basename(source_image).split(".")[1]
 
     # Check input type is valid for this function.
-    valid_ext_list = [extensions.EXT_JPG, extensions.EXT_PNG, extensions.EXT_JPG]
+    valid_ext_list = [extensions.EXT_JPG, extensions.EXT_PNG, extensions.EXT_TIF]
     is_valid = False
     for valid_ext in valid_ext_list:
         if extension in valid_ext:
@@ -163,15 +164,17 @@ def normal_img_convertion(source_image, target_format=0, preserve_original_img=T
         raise ValueError(extension + " is not a supported input type.")
     
     if target_format == 0:
-        target_ext = ".JPG"
+        target_ext = ".jpg"
     elif target_format == 1:
-        target_ext = ".TIF"  # Untested
+        target_ext = ".tif"  # Untested
     elif target_format == 2:
-        target_ext = ".PNG"
+        target_ext = ".png"
     elif target_format == 3:
-        target_ext = ".WEBP"
+        target_ext = ".webp"
 
     # Use PIL to convert image
+    print("Converting " + source_image + " to " + target_ext)
+
     im = Image.open(source_image).convert("RGB")
     output_file = directory + "/" + file_name + target_ext
     im.save(output_file, target_ext.replace(".", ""))
@@ -179,3 +182,55 @@ def normal_img_convertion(source_image, target_format=0, preserve_original_img=T
     # Delete source image (Might not be a good idea but adding a feature doesn't hurt)
     if not preserve_original_img:
         os.remove(source_image)
+
+
+def convert_all_images_in_directory_to_webp(source_dir, jpg=True, png=True, tif=True, preserve_original_img=True):
+    """
+    A function to convert all images in directory to WEBP.
+    This function is used in website development (i.e. convert all assets in a post) to reduce file server load.
+
+    Args:
+        source_dir (str): The directory to convert WEBP from.
+        jpg (boolean): Convert all JPG to WEBP.
+        png (boolean): Convert all PNG to WEBP.
+        tif (boolean): Convert all TIF to WEBP.
+    """
+    source_list = []
+
+    if jpg:
+        source_list.extend(list(extensions.EXT_JPG))
+
+    if tif:
+        source_list.extend(list(extensions.EXT_TIF))
+
+    if png:
+        source_list.extend(list(extensions.EXT_PNG))
+
+    source_format = tuple(source_list)
+
+    # Filter out hidden cache files starts with "._" created by Capture One.
+    source_file_list = [file for file in os.listdir(source_dir) if file.endswith(source_format) and not file.startswith("._")] 
+
+    # Convert each image to webp.
+    try:
+        for source_file in source_file_list:
+            normal_img_convertion(os.path.join(source_dir, source_file), target_format=3, preserve_original_img=preserve_original_img)  # 3 = WEBP
+    except Exception as err:
+        print("Error happened when converting image to WEBP: " + err)
+
+
+def convert_all_img_to_webp_by_depth(source_dir, depth=0):
+    """
+    Automatically run the conversion script for a given depth.
+    Args:
+        source_dir (str): A directory that contain image files.
+        source_format (int): 0 = JPG, 1 = TIF.
+        target_format (int): 0 = AVIF, 1 = HEIF.
+        depth (int): The layer of sub directory to run the program in.
+    """
+    sub_dirs = tools.find_sub_dirs(source_dir, depth=depth)
+    for sub_dir in sub_dirs:
+        try:
+            convert_all_images_in_directory_to_webp(sub_dir, jpg=True, png=True, tif=True, preserve_original_img=True)
+        except Exception as e:
+            print("Error:", e)

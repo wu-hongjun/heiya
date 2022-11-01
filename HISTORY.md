@@ -1,5 +1,8 @@
 # Change log
 
+## [2.1.0] - 2022-11-1
+- Added tools for image to webp pipeline.
+
 ## [2.0.0] - 2022-10-30
 - Refactored code for better expandability going forward.
 - Note that this version is not compatible with the previous version, as many functions now have new arguments.

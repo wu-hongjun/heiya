@@ -61,7 +61,7 @@ def delete_image_in_dir(source_dir, tif=False, jpg=False, heif=False, avif=False
     if fpn: delete_all_ext_in_dir(source_dir, extension=extensions.EXT_FPN)
 
         
-def find_sub_dirs(path, depth=2):
+def find_sub_dirs(path, depth=0):
     """
     Find all the folders of the source folder with a given depth.
     Reference: https://stackoverflow.com/a/69123246
@@ -71,3 +71,58 @@ def find_sub_dirs(path, depth=2):
     depth_search = '*/' * depth
     search_pattern = os.path.join(path, depth_search)
     return list(glob(f'{search_pattern}'))
+
+
+def delete_all_psd_by_depth(source_dir, depth=0):
+    """
+    Automatically delete all psd files for a given depth.
+    Args:
+        source_dir (str): A directory that contain image files.
+        depth (int): The layer of sub directory to run the program in.
+    """
+    sub_dirs = find_sub_dirs(source_dir, depth=depth)
+    for sub_dir in sub_dirs:
+        try:
+            delete_all_ext_in_dir(sub_dir, extension=extensions.EXT_PSD)
+        except Exception as e:
+            print("Error:", e)
+
+
+def delete_all_but_psd_by_depth(source_dir, depth=0):
+    """
+    Automatically delete all the content extensions except psd for a given depth.
+    Args:
+        source_dir (str): A directory that contain image files.
+        depth (int): The layer of sub directory to run the program in.
+    """
+    sub_dirs = find_sub_dirs(source_dir, depth=depth)
+    for sub_dir in sub_dirs:
+        try:
+            delete_all_ext_in_dir(sub_dir, extension=extensions.EXT_JPG)
+            delete_all_ext_in_dir(sub_dir, extension=extensions.EXT_PNG)
+            delete_all_ext_in_dir(sub_dir, extension=extensions.EXT_WEBP)
+            delete_all_ext_in_dir(sub_dir, extension=extensions.EXT_TIF)
+            delete_all_ext_in_dir(sub_dir, extension=extensions.EXT_AVIF)
+            delete_all_ext_in_dir(sub_dir, extension=extensions.EXT_HEIF)
+            delete_all_ext_in_dir(sub_dir, extension=extensions.EXT_H264)
+            delete_all_ext_in_dir(sub_dir, extension=extensions.EXT_H265)
+            delete_all_ext_in_dir(sub_dir, extension=extensions.EXT_RAW)
+            delete_all_ext_in_dir(sub_dir, extension=extensions.EXT_COMPRESSED)
+        except Exception as e:
+            print("Error:", e)
+
+def delete_all_img_by_depth(source_dir, depth=0):
+    """
+    Automatically delete all JPG/PNG/TIF for a given depth.
+    Args:
+        source_dir (str): A directory that contain image files.
+        depth (int): The layer of sub directory to run the program in.
+    """
+    sub_dirs = find_sub_dirs(source_dir, depth=depth)
+    for sub_dir in sub_dirs:
+        try:
+            delete_all_ext_in_dir(sub_dir, extension=extensions.EXT_JPG)
+            delete_all_ext_in_dir(sub_dir, extension=extensions.EXT_PNG)
+            delete_all_ext_in_dir(sub_dir, extension=extensions.EXT_TIF)
+        except Exception as e:
+            print("Error:", e)
