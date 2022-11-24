@@ -265,7 +265,7 @@ def convert_all_videos_in_directory_to_hevc(source_dir, mkv=True, mp4=True, avi=
     # Convert each image to webp.
     try:
         for source_file in source_file_list:
-            to_hei.video_to_h265(os.path.join(source_dir, source_file), output=None, postpend="", output_extension = ".hevc", hevc_toolbox=hevc_toolbox, nvenc=nvenc)
+            to_hei.video_to_h265(os.path.join(source_dir, source_file), output=None, hevc_toolbox=hevc_toolbox, nvenc=nvenc)
             # normal_img_convertion(os.path.join(source_dir, source_file), target_format=3, preserve_original_img=preserve_original_img)  # 3 = WEBP
     except Exception as err:
         print("Error happened when converting image to WEBP: " + err)
