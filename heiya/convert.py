@@ -235,7 +235,7 @@ def convert_all_img_to_webp_by_depth(source_dir, depth=0):
         except Exception as e:
             print("Error:", e)
 
-def convert_all_videos_in_directory_to_hevc(source_dir, mkv=True, mp4=True, avi=True, hevc_toolbox=hevc_toolbox, nvenc=nvenc):
+def convert_all_videos_in_directory_to_hevc(source_dir, mkv=True, mp4=True, avi=True, hevc_toolbox=False, nvenc=False):
     """
     A function to convert all images in directory to WEBP.
     This function is used in website development (i.e. convert all assets in a post) to reduce file server load.

@@ -134,12 +134,12 @@ def video_to_h265(source_video, output=None, postpend="_h265", output_extension 
         output = os.path.join(directory, file_name + postpend + output_extension)
 
     if hevc_toolbox:
-        encoder = "hevc_toolbox"
+        encoder = "hevc_videotoolbox"
     elif nvenc:
         encoder = "hevc_nvenc"
     else:
         encoder = "libx265"
         
-    command = "ffmpeg -i \""+ str(source_video) + "\" -c:v " + encoder + " -c:a copy -x265-params crf=25 \"" + output + "\""
+    command = "ffmpeg -i \""+ str(source_video) + "\" -c:v " + encoder + " -vtag hvc1 -c:a copy \"" + output + "\""
 
     return os.system(command)
