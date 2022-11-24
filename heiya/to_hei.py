@@ -117,7 +117,7 @@ def convert_all_sub_folders_to_hei(source_dir, source_format=0, target_format=0,
             print("Error:", e)
 
 
-def video_to_h265(source_video, output=None, postpend="_h265", output_extension = ".mp4", hw_acceleration=False):
+def video_to_h265(source_video, output=None, postpend="_h265", output_extension = ".mp4", hevc_toolbox=False, nvenc=False):
     """
     Experimental feature.
     """
@@ -133,8 +133,10 @@ def video_to_h265(source_video, output=None, postpend="_h265", output_extension 
     if not output:
         output = os.path.join(directory, file_name + postpend + output_extension)
 
-    if hw_acceleration:
+    if hevc_toolbox:
         encoder = "hevc_toolbox"
+    elif nvenc:
+        encoder = "hevc_nvenc"
     else:
         encoder = "libx265"
         

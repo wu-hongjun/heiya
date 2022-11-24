@@ -235,7 +235,7 @@ def convert_all_img_to_webp_by_depth(source_dir, depth=0):
         except Exception as e:
             print("Error:", e)
 
-def convert_all_videos_in_directory_to_hevc(source_dir, mkv=True, mp4=True, avi=True, preserve_original_img=True):
+def convert_all_videos_in_directory_to_hevc(source_dir, mkv=True, mp4=True, avi=True, hevc_toolbox=hevc_toolbox, nvenc=nvenc):
     """
     A function to convert all images in directory to WEBP.
     This function is used in website development (i.e. convert all assets in a post) to reduce file server load.
@@ -265,13 +265,13 @@ def convert_all_videos_in_directory_to_hevc(source_dir, mkv=True, mp4=True, avi=
     # Convert each image to webp.
     try:
         for source_file in source_file_list:
-            to_hei.video_to_h265(os.path.join(source_dir, source_file), output=None, postpend="", output_extension = ".hevc", hw_acceleration=False)
+            to_hei.video_to_h265(os.path.join(source_dir, source_file), output=None, postpend="", output_extension = ".hevc", hevc_toolbox=hevc_toolbox, nvenc=nvenc)
             # normal_img_convertion(os.path.join(source_dir, source_file), target_format=3, preserve_original_img=preserve_original_img)  # 3 = WEBP
     except Exception as err:
         print("Error happened when converting image to WEBP: " + err)
 
 
-def convert_all_video_to_hevc_by_depth(source_dir, depth=0):
+def convert_all_video_to_hevc_by_depth(source_dir, depth=0, hevc_toolbox=False, nvenc=False):
     """
     Automatically run the conversion script for a given depth.
     Args:
@@ -283,6 +283,6 @@ def convert_all_video_to_hevc_by_depth(source_dir, depth=0):
     sub_dirs = tools.find_sub_dirs(source_dir, depth=depth)
     for sub_dir in sub_dirs:
         try:
-            convert_all_videos_in_directory_to_hevc(sub_dir, mkv=True, mp4=True, avi=True, preserve_original_img=True)
+            convert_all_videos_in_directory_to_hevc(sub_dir, mkv=True, mp4=True, avi=True, hevc_toolbox=hevc_toolbox, nvenc=nvenc)
         except Exception as e:
             print("Error:", e)
