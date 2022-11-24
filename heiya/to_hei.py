@@ -127,8 +127,8 @@ def video_to_h265(source_video, output=None, postpend="_h265", output_extension 
     extension = basename(source_video).split(".")[1]
 
     # Register the pillow HEI opener
-    if extension not in extensions.EXT_H264 and extension not in extensions.EXT_H265:
-        raise ValueError("Not a valid source video format.")
+    if "." + extension not in extensions.EXT_H264 and extension not in extensions.EXT_H265:
+        raise ValueError(extension + "Not a valid source video format.")
 
     if not output:
         output = os.path.join(directory, file_name + postpend + output_extension)
@@ -138,4 +138,6 @@ def video_to_h265(source_video, output=None, postpend="_h265", output_extension 
     else:
         encoder = "libx265"
         
-    return os.system("ffmpeg -i "+ str(source_video) + " -c:v " + encoder + " -c:a copy -x265-params crf=25" + output)
+    command = "ffmpeg -i \""+ str(source_video) + "\" -c:v " + encoder + " -c:a copy -x265-params crf=25 \"" + output + "\""
+
+    return os.system(command)

@@ -234,3 +234,55 @@ def convert_all_img_to_webp_by_depth(source_dir, depth=0):
             convert_all_images_in_directory_to_webp(sub_dir, jpg=True, png=True, tif=True, preserve_original_img=True)
         except Exception as e:
             print("Error:", e)
+
+def convert_all_videos_in_directory_to_hevc(source_dir, mkv=True, mp4=True, avi=True, preserve_original_img=True):
+    """
+    A function to convert all images in directory to WEBP.
+    This function is used in website development (i.e. convert all assets in a post) to reduce file server load.
+
+    Args:
+        source_dir (str): The directory to convert WEBP from.
+        jpg (boolean): Convert all JPG to WEBP.
+        png (boolean): Convert all PNG to WEBP.
+        tif (boolean): Convert all TIF to WEBP.
+    """
+    source_list = []
+
+    if mkv:
+        source_list.extend(list(extensions.EXT_MKV))
+
+    if mp4:
+        source_list.extend(list(extensions.EXT_MP4))
+
+    if avi:
+        source_list.extend(list(extensions.EXT_AVI))
+
+    source_format = tuple(source_list)
+
+    # Filter out hidden cache files starts with "._" created by Capture One.
+    source_file_list = [file for file in os.listdir(source_dir) if file.endswith(source_format) and not file.startswith("._")] 
+
+    # Convert each image to webp.
+    try:
+        for source_file in source_file_list:
+            to_hei.video_to_h265(os.path.join(source_dir, source_file), output=None, postpend="", output_extension = ".hevc", hw_acceleration=False)
+            # normal_img_convertion(os.path.join(source_dir, source_file), target_format=3, preserve_original_img=preserve_original_img)  # 3 = WEBP
+    except Exception as err:
+        print("Error happened when converting image to WEBP: " + err)
+
+
+def convert_all_video_to_hevc_by_depth(source_dir, depth=0):
+    """
+    Automatically run the conversion script for a given depth.
+    Args:
+        source_dir (str): A directory that contain image files.
+        source_format (int): 0 = JPG, 1 = TIF.
+        target_format (int): 0 = AVIF, 1 = HEIF.
+        depth (int): The layer of sub directory to run the program in.
+    """
+    sub_dirs = tools.find_sub_dirs(source_dir, depth=depth)
+    for sub_dir in sub_dirs:
+        try:
+            convert_all_videos_in_directory_to_hevc(sub_dir, mkv=True, mp4=True, avi=True, preserve_original_img=True)
+        except Exception as e:
+            print("Error:", e)
