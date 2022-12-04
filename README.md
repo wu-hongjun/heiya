@@ -5,6 +5,7 @@
 ## Announcement
 Heiya is iterating quickly under active development. 
 Function calls and arguments will change, so please keep your version updated and refer to the newest examples in the documentation.
+
 Note: As of Heiya v2.2.1, Heiya now has experimental Windows support.
 
 ## Introduction
