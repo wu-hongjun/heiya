@@ -5,6 +5,7 @@
 ## Announcement
 Heiya is iterating quickly under active development. 
 Function calls and arguments will change, so please keep your version updated and refer to the newest examples in the documentation.
+Note: As of Heiya v2.2.1, Heiya now has experimental Windows support.
 
 ## Introduction
 Heiya allows you to easily translate between JPG/TIFF and AVIF/HEIC, without losing image metadata such as geotag and lens information. All the common operations can be done using one line of code.
@@ -36,7 +37,6 @@ pip install heiya
 * A complete set of heiya examples can be found in the [Heiya Full Demo Notebook](https://github.com/wu-hongjun/heiya/blob/main/heiya_full_demo.ipynb).
 
 ## To-Do & Help Needed
-* Seek alternative for `pyheif` (Which is why Heiya does not support Windows).
 * Attempt an implementation using `imagemagick` to enable bitrate higher than the current 8 bit.
 
 ## What does the name mean?
