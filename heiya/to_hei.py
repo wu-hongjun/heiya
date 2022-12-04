@@ -117,7 +117,7 @@ def convert_all_sub_folders_to_hei(source_dir, source_format=0, target_format=0,
             print("Error:", e)
 
 
-def video_to_h265(source_video, output=None, postpend="_h265", output_extension = ".mp4", hevc_toolbox=False, nvenc=False):
+def video_to_h265(source_video, output=None, postpend="_h265", output_extension = ".mp4", subtitle=None, hevc_toolbox=False, nvenc=False):
     """
     Experimental feature.
     """
@@ -139,7 +139,14 @@ def video_to_h265(source_video, output=None, postpend="_h265", output_extension 
         encoder = "hevc_nvenc"
     else:
         encoder = "libx265"
+
+    if subtitle:
+        subtitle_cmd = "-vf subtitle=\"" + subtitle + "\""
+    else:
+        subtitle_cmd = ""
         
-    command = "ffmpeg -i \""+ str(source_video) + "\" -c:v " + encoder + " -vtag hvc1 -c:a copy \"" + output + "\""
+    # command = "ffmpeg -i \""+ str(source_video) + "\" -c:v " + encoder + subtitle_cmd + " -vtag hvc1 -c:a copy \"" + output + "\""
+    command = "ffmpeg -i \"{0}\" -c:v {1} {2} -vtag hvc1 -c:a copy \"{3}\"".format(source_video, encoder, subtitle_cmd, output)
+    print(command)
 
     return os.system(command)
