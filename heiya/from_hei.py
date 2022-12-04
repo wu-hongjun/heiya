@@ -1,8 +1,6 @@
 # High Efficiency Image (AVIF/HEIF) to JPG Converter 
 
 from PIL import Image
-import piexif
-import pyheif  # Deprecating
 
 import pillow_heif
 
@@ -12,112 +10,52 @@ import os
 from os import listdir
 from os.path import dirname, basename
 
-def convert_hei_to_image(source_hei, target_format=0, fix_rotation=True):
+
+def get_hei_exif(filename):
+    image = Image.open(filename)
+    image.verify()
+    return image.getexif()
+
+
+def convert_hei_to_image(source_hei, target_format=0):
+
     """
-    Convert a HEI (High Efficiency Image) file (.AVIF or .HEIF) into .JPG
+    Convert a TIF file into a AVIF file.
+    This conversion preserves all the image metadata.
     
     Args:
-        source_hei (str): A full file path of an image.
-        target (int): 0=JPG 1=TIF
-        fix_rotation (boolean): The conversion might mess up the rotation of the image, this can help fix the issue.
-    Returns:
-        (str) Full file path of the generated file.
-    """
-    
-    # Separate a full file path into directory, file name, and extension
-    directory = dirname(source_hei)
-    file_name  = basename(source_hei).split(".")[0] 
-    extension = basename(source_hei).split(".")[1]
-    
-    # Read HEI file
-    # Note: pillow_heif can handle both heif and avif
-    hei_file = pyheif.read(source_hei)  
-    
-    # Construct Image object
-    # Creation of image 
-    image = Image.frombytes(
-        hei_file.mode,
-        hei_file.size,
-        hei_file.data,
-        "raw",
-        hei_file.mode,
-        hei_file.stride,
-    )
-    
-    # Retrive the metadata
-    # Reference: https://stackoverflow.com/a/65054622
-    for metadata in hei_file.metadata or []:
-        if metadata['type'] == 'Exif':
-            exif_dict = piexif.load(metadata['data'])
-
-    # PIL rotates the image according to exif info, so it's necessary to remove the orientation tag otherwise the image will be rotated again (1° time from PIL, 2° from viewer).
-    if fix_rotation:
-        exif_dict['0th'][274] = 1
+        source_image (str): A full file path of an image.
+        target_format (int): The target format you want to convert to. 0 = AVIF, 1 = HEIF
         
-    meta = piexif.dump(exif_dict)
-    
-    # Construct output file name
-    if target_format == 0:
-        output_file = directory + "/" + file_name + ".JPG"
-    elif target_format == 1:
-        output_file = directory + "/" + file_name + ".TIF"
-    else:
-        raise ValueError("Not a valid target type. For target: 0=JPG 1=TIF.")
-
-    # Save new image
-    if meta:
-        image.save(output_file, exif=meta)
-    else:
-        image.save(output_file)
-    
-    return output_file
-
-
-def convert_hei_to_image_new(source_hei, target_format=0, fix_rotation=True):
-    """
-    Convert a HEI (High Efficiency Image) file (.AVIF or .HEIF) into (JPG/TIF)
-    
-    Args:
-        source_hei (str): A full file path of an image.
-        target_format (int): The target format you want to convert to. 0 = JPG, 1 = TIF.
-        fix_rotation (boolean): The conversion might mess up the rotation of the image, this can help fix the issue.
     Returns:
         (str) Full file path of the generated file.
     """
-    
     # Separate a full file path into directory, file name, and extension
     directory = dirname(source_hei)
     file_name  = basename(source_hei).split(".")[0] 
-    extension = basename(source_hei).split(".")[1]
+    extension = basename(source_hei).split(".")[-1]
+
+    meta = get_hei_exif(source_hei)
+
+    heif_file = pillow_heif.read_heif(source_hei)
+    
+    image = Image.frombytes(
+        heif_file.mode,
+        heif_file.size,
+        heif_file.data,
+        "raw",
+
+    )
 
     # Register the pillow HEI opener
-    if extension in extensions.EXT_HEIF:
-        pillow_heif.register_heif_opener()
-    elif extension in extensions.EXT_AVIF:
-        pillow_heif.register_avif_opener()
-    else:
-        raise ValueError(str(extension) + " is not a valid input format. Please use .HEIF or .AVIF.")
-
-    
-    # Read HEI file
-    # Note: pillow_heif can handle both heif and avif
-    image = Image.open(source_hei)  
-    image.verify()
-    meta = image.getexif()
-    
-    # Construct output file name
     if target_format == 0:
         output_file = directory + "/" + file_name + ".JPG"
     elif target_format == 1:
-        output_file = directory + "/" + file_name + ".TIF"
+        output_file = directory + "/" + file_name + ".PNG"
     else:
-        raise ValueError("Not a valid target type. For target: 0=JPG 1=TIF.")
+        raise ValueError("No codec is selected, try pass in target_format=0 as an argument.")
 
-    # Save new image
-    if meta:
-        image.save(output_file, exif=meta)
-    else:
-        image.save(output_file)
+    image.save(output_file, exif=meta)
     
     return output_file
     
