@@ -11,12 +11,6 @@ from os import listdir
 from os.path import dirname, basename
 
 
-def get_hei_exif(filename):
-    image = Image.open(filename)
-    image.verify()
-    return image.getexif()
-
-
 def convert_hei_to_image(source_hei, target_format=0):
 
     """
@@ -35,10 +29,17 @@ def convert_hei_to_image(source_hei, target_format=0):
     file_name  = basename(source_hei).split(".")[0] 
     extension = basename(source_hei).split(".")[-1]
 
-    meta = get_hei_exif(source_hei)
+    if extension in extensions.EXT_AVIF:
+        pillow_heif.register_avif_opener()
+    elif extension in extensions.EXT_HEIF:
+        pillow_heif.register_heif_opener()
+    else:
+        pass
+
+    meta = Image.open(source_hei).getexif()
 
     heif_file = pillow_heif.read_heif(source_hei)
-    
+
     image = Image.frombytes(
         heif_file.mode,
         heif_file.size,

@@ -1,5 +1,8 @@
 # Change log
 
+## [2.2.1] - 2022-11-1
+- Fixed a bug that registers incorrect HEI opener for pillow_heif.
+
 ## [2.2.0] - 2022-11-1
 - Attempt to add support for Windows.
 
