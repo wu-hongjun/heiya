@@ -1,5 +1,8 @@
 # Change log
 
+## [2.2.0] - 2022-11-1
+- Attempt to add support for Windows.
+
 ## [2.1.0] - 2022-11-1
 - Added tools for image to webp pipeline.
 
