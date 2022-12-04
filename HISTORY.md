@@ -1,9 +1,12 @@
 # Change log
 
-## [2.2.1] - 2022-11-1
+## [2.2.2] - 2022-12-5
+- Added minor support to non dotted extensions in heiya.extensions.
+
+## [2.2.1] - 2022-12-4
 - Fixed a bug that registers incorrect HEI opener for pillow_heif.
 
-## [2.2.0] - 2022-11-1
+## [2.2.0] - 2022-12-4
 - Attempt to add support for Windows.
 
 ## [2.1.0] - 2022-11-1

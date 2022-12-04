@@ -14,12 +14,12 @@ from os.path import dirname, basename
 def convert_hei_to_image(source_hei, target_format=0):
 
     """
-    Convert a TIF file into a AVIF file.
+    Convert a HEI file into jpg or png.
     This conversion preserves all the image metadata.
     
     Args:
-        source_image (str): A full file path of an image.
-        target_format (int): The target format you want to convert to. 0 = AVIF, 1 = HEIF
+        source_hei (str): A full file path of an image.
+        target_format (int): The target format you want to convert to. 0 = JPG, 1 = PNG
         
     Returns:
         (str) Full file path of the generated file.
