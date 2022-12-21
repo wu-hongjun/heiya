@@ -2,8 +2,10 @@
 
 > **A one-line solution for photographers to simply convert JPEG into High Efficiency Image (AVIF/HEIC) and preserve all the metadata.**
 
-## Announcement
+## Website
 The official website of Heiya has been launched!!!!! Visit the website [here](https://heiya.hongjunwu.com/) for everything about it.
+
+## Announcement
 Heiya is iterating quickly under active development. 
 Function calls and arguments will change, so please keep your version updated and refer to the newest examples in the documentation.
 
