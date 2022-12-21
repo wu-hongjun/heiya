@@ -37,10 +37,9 @@
           <h1 class="section__title">Chapter 1: Prerequisites</h1>
           <p>Long story short, Heiya runs on Python 3, so at a bare minimum you <strong>must</strong> have Python installed on your computer. 
             But there are also some optional things to make your life easier.</p>
-          <h2>1.1 - Optional (But Strongly Recommended) Stuff</h2>
+          <h2>1.1 - (Optional but strongly recommended) Install Anaconda</h2>
           <p>Note: If you already have python, jupyter_notebook, and pyperclip installed on your computer, feel free to skip this section.</p>
-          <p>In order to use it more easily, you might want to <strong>optionally</strong> install <code>jupyter_notebook</code> and <code>pyperclip</code>.</p>
-          <h3>1.1.1 - Step 1: Install Anaconda</h3>
+          <p>In order to use it more easily, you might want to <strong>optionally</strong> install <code>jupyter_notebook</code>.</p>
           <p>Configuring <code>python</code> and <code>jupyter_notebook</code> might be a daunting task for those who are not familiar with using Python.
             Therefore, it would be much better if there is something that just takes care of everything automatically and not having to mess around with the code. 
             That is what Anaconda does.  
@@ -52,48 +51,6 @@
           </p>
           <p>Of course, if you are familiar with python configuration, you can do it on your own, Anaconda is optional.</p>
 
-          <h3>1.1.2 - Step 2: Install pyperclip</h3>
-          <p><code>pyperclip</code> is a useful tool that does nothing more other than getting the text you copied from your clipboard.</p>
-          <p>I like to use it to read the folder address that I copied from Finder/File Explorer so I don't have to enter it manually. 
-            Just know that you don't need pyperclip to run Heiya and I have no affiliation with the author of pyperclip.
-          </p>
-          <p>To install pyperclip, open your <strong>Anaconda Prompt</strong> and run the following command <strong>with administrator privileges</strong>.</p>
-          <div class="code__block code__block--notabs">
-            <pre class="code code--block">
-              <code>
-                conda activate base
-              </code>
-            </pre>
-          </div>
-          <div class="code__block code__block--notabs">
-            <pre class="code code--block">
-              <code>
-                pip install pyperclip
-              </code>
-            </pre>
-          </div>
-          <h4>1.1.2.1 - Troubleshooting</h4>
-          <p>If you encounter some error code, most likely one of two things is going wrong:</p>
-          <li>1. You don't have pip installed on your computer. To solve this, run the following command to install pip.
-            <div class="code__block code__block--notabs">
-              <pre class="code code--block">
-                <code>
-                curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-                python get-pip.py
-                </code>
-              </pre>
-            </div>
-        </li>
-        <li>
-          2. You don't have the Admin permission to run the commands. You are most likely going to see something like: 
-            <div class="code__block code__block--notabs">
-              <pre class="code code--block">
-                <code>
-                  ERROR: Could not install packages due to an OSError: [WinError 5] Access is denied: 'c:\\python310\\scripts\\pip.exe'
-                </code>
-              </pre>
-            </div>
-            Just make sure you are running Terminal using Administrator privilidges.
             <h2>1.2 - Install Heiya (Mandatory)</h2>
             <p>Installation of Heiya should be fairly straight forward if you did the previous section or already have everything setup.</p>
             <p>Note: <strong>If you used Anaconda</strong>, run the following in <strong>Anaconda Prompt</strong> (Help in 1.2.2):</p>
@@ -111,7 +68,7 @@
                 </code>
               </pre>
             </div>
-            <p>Once finished, it should look something like bwlow.</p>
+            <p>Once finished, it should look something like below.</p>
             <img src="./img/anaconda_prompt_finished.png" width="100%" height="100%">
             <p>If you <strong>configured on your own</strong>, simply run the following command in <strong>Terminal with administrator privileges</strong> (Help in 1.2.1).</p>
             <div class="code__block code__block--notabs">
@@ -121,7 +78,30 @@
                 </code>
               </pre>
             </div>
-            <h3>1.2.1 - How to run Terminal with administrator priviledges?</h3>
+            <h4>1.2.1 - Troubleshooting</h4>
+              <p>If you encounter some error code, most likely one of two things is going wrong:</p>
+              <li>1. You don't have pip installed on your computer. To solve this, run the following command to install pip.
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+                    python get-pip.py
+                    </code>
+                  </pre>
+                </div>
+            </li>
+            <li>
+              2. You don't have the Admin permission to run the commands. You are most likely going to see something like: 
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      ERROR: Could not install packages due to an OSError: [WinError 5] Access is denied: 'c:\\python310\\scripts\\pip.exe'
+                    </code>
+                  </pre>
+                </div>
+                Just make sure you are running Terminal using Administrator privilidges.
+            </li>
+            <h3>1.2.2 - How to run Terminal with administrator priviledges?</h3>
             <h4>macOS</h4>
             <p>On macOS, it is pretty straight forward. Open Launchpad and search for "Terminal", and open that app.</p>
             <p>Type in the above command, and press enter. Terminal will prompt you to enter the password of your computer, just do it and it is complete.</p>
@@ -206,22 +186,11 @@
           </li>
           <p>Now, you can do one of two things:</p>
           <li>
-            If you have pyperclip installed by following 1.1.2, there is nothing you need to do.
+            If you just want to use the directory in your clipboard, do nothing
           </li>
           <li>
-            If you did not install pyperclip, delete the following lines and paste the address into <code>source_dir</code>:
-            <div class="code__block code__block--notabs">
-              <pre class="code code--block">
-                <code>
-                  import pyperclip as clip
-
-                  # Get the image location directly from the clipboard
-                  if source_dir == "":
-                  source_dir = clip.paste()
-                </code>
-              </pre>
-            </div>
-            <p>In the end, it looks something like this:</p>
+            If you wish to enter a custom path, paste the address into <code>source_dir</code>:
+            <p>In the end, it might something like this (I deleted the lines that is doing nothing):</p>
             <img src="./img/deleted_pyperclip_cell.png" width="100%" height="100%">
           </li>
           <h3>2.3, continued</h3>
