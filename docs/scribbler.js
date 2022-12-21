@@ -12,14 +12,10 @@ var getAll = function (selector, scope) {
 // setup typewriter effect in the terminal demo
 if (document.getElementsByClassName('demo').length > 0) {
   var i = 0;
-  var txt = `import heiya
-
-            source_dir = "Path to all of your JPGs"
+  var txt = `heiya.to_hei.convert_image_in_dir_to_hei(source_dir, target_format=1) 
             
-            heiya.to_hei.convert_image_in_dir_to_hei(source_dir, source_format=0, target_format=1) 
-            
-            # It is this easy to convert all the JPG in source_dir to HEIF with Heiya.`;
-  var speed = 60;
+            # It is this easy to make all the JPG in a folder up to 100x smaller with Heiya.`;
+  var speed = 80;
 
   function typeItOut () {
     if (i < txt.length) {
