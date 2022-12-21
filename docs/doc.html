@@ -1,0 +1,178 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Heiya Documentation - High Efficiency Image Conversion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="scribbler-global.css">
+    <link rel="stylesheet" href="scribbler-doc.css">
+    <link rel="author" href="humans.txt">
+  </head>
+  <body>
+    <div class="doc__bg"></div>
+    <nav class="header">
+      <h1 class="logo">Heiya <span class="logo__thin">Doc</span></h1>
+      <ul class="menu">
+        <div class="menu__item toggle"><span></span></div>
+        <li class="menu__item"><a href="https://github.com/wu-hongjun/heiya" class="link link--dark"><i class="fa fa-github"></i> Github</a></li>
+        <li class="menu__item"><a href="index.html" class="link link--dark"><i class="fa fa-home"></i> Home</a></li>
+      </ul>
+    </nav>
+    <div class="wrapper">
+      <aside class="doc__nav">
+        <ul>
+          <li class="js-btn selected">Prerequisites</li>
+          <li class="js-btn">Get Started</li>
+          <li class="js-btn">Configuration</li>
+          <li class="js-btn">Keybindings</li>
+          <li class="js-btn">Issues</li>
+        </ul>
+      </aside>
+      <article class="doc__content">
+        <section class="js-section">
+          <h1 class="section__title">Chapter 1: Prerequisites</h1>
+          <p>Long story short, Heiya runs on Python 3, so at a bare minimum you <strong>must</strong> have Python installed on your computer. 
+            But there are also some optional things to make your life easier.</p>
+          <h2>1 - Optional (But Strongly Recommended) Stuff</h2>
+          <p>Note: If you already have python, jupyter_notebook, and pyperclip installed on your computer, feel free to skip this section.</p>
+          <p>In order to use it more easily, you might want to <strong>optionally</strong> install <code>jupyter_notebook</code> and <code>pyperclip</code>.</p>
+          <h3>1.1 - Step 1: Install Anaconda</h3>
+          <p>Configuring <code>python</code> and <code>jupyter_notebook</code> might be a daunting task for those who are not familiar with using Python.
+            Therefore, it would be much better if there is something that just takes care of everything automatically and not having to mess around with the code. 
+            That is what Anaconda does.  
+          </p>
+          <strong>For the majority of people, you will want to just install Anaconda from their <a href="https://www.anaconda.com/">Official Website (Link)</a>.</strong>
+          <p>
+            Note I have no affiliation with Anaconda, it just makes setup and install python prerequisites much easier. 
+            After you have Anaconda installed on your computer, it should already configured pip, jupyter_notebook, and python for you, and if you don't know what I am talking about, don't worry about it and just restart your computer.
+          </p>
+          <p>Of course, if you are familiar with python configuration, you can do it on your own, Anaconda is optional.</p>
+
+          <h3>1.2 - Step 2: Install pyperclip</h3>
+          <p><code>pyperclip</code> is a useful tool that does nothing more other than getting the text you copied from your clipboard.</p>
+          <p>I like to use it to read the folder address that I copied from Finder/File Explorer so I don't have to enter it manually. 
+            Just know that you don't need pyperclip to run Heiya and I have no affiliation with the author of pyperclip.
+          </p>
+          <p>To install pyperclip, open your <strong>Terminal</strong> and run the following command <strong>with administrator privileges</strong>.</p>
+          <div class="code__block code__block--notabs">
+            <pre class="code code--block">
+              <code>
+                pip install pyperclip
+              </code>
+            </pre>
+          </div>
+          <h4>1.2.1 - Troubleshooting</h4>
+          <p>If you encounter some error code, most likely one of two things is going wrong:</p>
+          <li>1. You don't have pip installed on your computer. To solve this, run the following command to install pip.
+            <div class="code__block code__block--notabs">
+              <pre class="code code--block">
+                <code>
+                curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+                python get-pip.py
+                </code>
+              </pre>
+            </div>
+        </li>
+        <li>
+          2. You don't have the Admin permission to run the commands. You are most likely going to see something like: 
+            <div class="code__block code__block--notabs">
+              <pre class="code code--block">
+                <code>
+                  ERROR: Could not install packages due to an OSError: [WinError 5] Access is denied: 'c:\\python310\\scripts\\pip.exe'
+                </code>
+              </pre>
+            </div>
+            Just make sure you are running Terminal using Administrator privilidges.
+            <h2>1.2 - Install Heiya (Mandatory)</h2>
+            <p>Installation of Heiya should be fairly straight forward if you did the previous section or already have everything setup.</p>
+            <p>Simply run the following command in <strong>Terminal with administrator privileges</strong>.</p>
+            <div class="code__block code__block--notabs">
+              <pre class="code code--block">
+                <code>
+                  pip install heiya
+                </code>
+              </pre>
+            </div>
+            <h3>1.2.1 - How to run Terminal with administrator priviledges?</h3>
+            <h4>macOS</h4>
+            <p>On macOS, it is pretty straight forward. Open Launchpad and search for "Terminal", and open that app.</p>
+            <p>Type in the above command, and press enter. Terminal will prompt you to enter the password of your computer, just do it and it is complete.</p>
+            <h4>Windows</h4>
+            <p>On Windows 11, there are many ways to run Terminal (Or Powershell/Command Prompt if you are on Windows 10 or below, it is the same thing).</p>
+            <p>Simply right click the Windows icon on the bottom left of your screen, and press the option to <strong>Run Terminal (or Powershell) as Admin</strong>.</p>
+        </li>
+        </section>
+
+        <h1>Below are work in progress.</h1>
+
+        <section class="js-section">
+          <h1 class="section__title">Chapter 2: Get Started</h1>
+          <p>Learn how to configure settings for Scribbler, such as your syntax highlighting preference and the default saving folder location.</p>
+          <h3 class="section__title">Installation</h3>
+          <div class="code__block code__block--notabs">
+            <pre class="code code--block">
+              <code>
+                $ scribbler  ——config
+                  {
+                    “encryption”: true, 
+                    “highlighting“: true,
+                    “prettyTable”: false,
+                    “font”: [“Helvetica”, “sans-serif”],
+                    “folder”: “~/Desktop“
+                  }
+              </code>
+            </pre>
+          </div>
+        </section>
+        <section class="js-section">
+          <h3 class="section__title">Configuration</h3>
+          <p>Learn how to configure settings for Scribbler, such as your syntax highlighting preference and the default saving folder location.</p>
+          <table id="customers">
+            <tr>
+              <th>Options</th>
+              <th>Value</th>
+              <th>Default</th>
+            </tr>
+            <tr>
+              <td>encryption</td>
+              <td>encrypt all notes before saving. If turned on, it requires password to open the file.</td>
+              <td>false</td>
+            </tr>
+            <tr>
+              <td>highlighting</td>
+              <td>Show syntax highlight on markdown text.</td>
+              <td>true</td>
+            </tr>
+            <tr>
+              <td>prettyTable</td>
+              <td>Render table with Scribbler’s pretty table style.</td>
+              <td>true</td>
+            </tr>
+          </table>
+          <p>Malis percipitur an pro. Pro aperiam persequeris at, at sonet sensibus mei, id mea postulant definiebas concludaturque. Id qui malis abhorreant, mazim melius quo et. At eam altera dolorum, case dicant lobortis ius te, ad vel affert oportere reprehendunt. Quo no verterem deseruisse, mea brute postea te, ne per tacimates suavitate vituperatoribus.</p>
+          <hr />
+        </section>
+        <section class="js-section">
+          <h3 class="section__title">Keybindings</h3>
+          <p>Lorem ipsum dolor sit amet, scripta tibique indoctum sit ei, mel inani aeterno ad. Facer oratio ex per. At eam movet verear, in sea brute patrioque disputando, usu nonumes torquatos an. Ex his quaerendum intellegebat, ut vel homero accusam. Eum at debet tibique, in vocibus temporibus adversarium sed. Porro verear eu vix, ne usu tation vituperata.</p>
+          <p>Malis percipitur an pro. Pro aperiam persequeris at, at sonet sensibus mei, id mea postulant definiebas concludaturque. Id qui malis abhorreant, mazim melius quo et. At eam altera dolorum, case dicant lobortis ius te, ad vel affert oportere reprehendunt. Quo no verterem deseruisse, mea brute postea te, ne per tacimates suavitate vituperatoribus.</p>
+          <p>Malis percipitur an pro. Pro aperiam persequeris at, at sonet sensibus mei, id mea postulant definiebas concludaturque. Id qui malis abhorreant, mazim melius quo et. At eam altera dolorum, case dicant lobortis ius te, ad vel affert oportere reprehendunt. Quo no verterem deseruisse, mea brute postea te, ne per tacimates suavitate vituperatoribus.</p>
+          <hr />
+        </section>
+        <section class="js-section">
+          <h3 class="section__title">Issues</h3>
+          <p>Lorem ipsum dolor sit amet, scripta tibique indoctum sit ei, mel inani aeterno ad. Facer oratio ex per. At eam movet verear, in sea brute patrioque disputando, usu nonumes torquatos an. Ex his quaerendum intellegebat, ut vel homero accusam. Eum at debet tibique, in vocibus temporibus adversarium sed. Porro verear eu vix, ne usu tation vituperata.</p>
+          <p>Malis percipitur an pro. Pro aperiam persequeris at, at sonet sensibus mei, id mea postulant definiebas concludaturque. Id qui malis abhorreant, mazim melius quo et. At eam altera dolorum, case dicant lobortis ius te, ad vel affert oportere reprehendunt. Quo no verterem deseruisse, mea brute postea te, ne per tacimates suavitate vituperatoribus.</p>
+        </section>
+      </article>
+    </div>
+
+    <footer class="footer">Scribbler is a free HTML template created exclusively for <a href="https://tympanus.net/codrops/?p=33686" target="_blank" class="link link--light">Codrops</a>.</footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="scribbler.js"></script>
+  </body>
+</html>
