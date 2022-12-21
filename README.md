@@ -2,11 +2,12 @@
 
 > **A one-line solution for photographers to simply convert JPEG into High Efficiency Image (AVIF/HEIC) and preserve all the metadata.**
 
+## Website
+The official website of Heiya has been launched!!!!! Visit the website [here](https://heiya.hongjunwu.com/) for everything about it.
+
 ## Announcement
 Heiya is iterating quickly under active development. 
 Function calls and arguments will change, so please keep your version updated and refer to the newest examples in the documentation.
-
-Note: As of Heiya v2.2.1, Heiya now has experimental Windows support.
 
 ## Introduction
 Heiya allows you to easily translate between JPG/TIFF and AVIF/HEIC, without losing image metadata such as geotag and lens information. All the common operations can be done using one line of code.
