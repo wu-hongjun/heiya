@@ -26,9 +26,10 @@
         <ul>
           <li class="js-btn selected">Prerequisites</li>
           <li class="js-btn">Get Started</li>
-          <li class="js-btn">Configuration</li>
-          <li class="js-btn">Keybindings</li>
-          <li class="js-btn">Issues</li>
+          <li class="js-btn">Advanced Usage</li>
+          <li class="js-btn">Heiya Functions</li>
+          <li class="js-btn">To-Do</li>
+          <li class="js-btn">License</li>
         </ul>
       </aside>
       <article class="doc__content">
@@ -36,10 +37,10 @@
           <h1 class="section__title">Chapter 1: Prerequisites</h1>
           <p>Long story short, Heiya runs on Python 3, so at a bare minimum you <strong>must</strong> have Python installed on your computer. 
             But there are also some optional things to make your life easier.</p>
-          <h2>1 - Optional (But Strongly Recommended) Stuff</h2>
+          <h2>1.1 - Optional (But Strongly Recommended) Stuff</h2>
           <p>Note: If you already have python, jupyter_notebook, and pyperclip installed on your computer, feel free to skip this section.</p>
           <p>In order to use it more easily, you might want to <strong>optionally</strong> install <code>jupyter_notebook</code> and <code>pyperclip</code>.</p>
-          <h3>1.1 - Step 1: Install Anaconda</h3>
+          <h3>1.1.1 - Step 1: Install Anaconda</h3>
           <p>Configuring <code>python</code> and <code>jupyter_notebook</code> might be a daunting task for those who are not familiar with using Python.
             Therefore, it would be much better if there is something that just takes care of everything automatically and not having to mess around with the code. 
             That is what Anaconda does.  
@@ -51,12 +52,19 @@
           </p>
           <p>Of course, if you are familiar with python configuration, you can do it on your own, Anaconda is optional.</p>
 
-          <h3>1.2 - Step 2: Install pyperclip</h3>
+          <h3>1.1.2 - Step 2: Install pyperclip</h3>
           <p><code>pyperclip</code> is a useful tool that does nothing more other than getting the text you copied from your clipboard.</p>
           <p>I like to use it to read the folder address that I copied from Finder/File Explorer so I don't have to enter it manually. 
             Just know that you don't need pyperclip to run Heiya and I have no affiliation with the author of pyperclip.
           </p>
-          <p>To install pyperclip, open your <strong>Terminal</strong> and run the following command <strong>with administrator privileges</strong>.</p>
+          <p>To install pyperclip, open your <strong>Anaconda Prompt</strong> and run the following command <strong>with administrator privileges</strong>.</p>
+          <div class="code__block code__block--notabs">
+            <pre class="code code--block">
+              <code>
+                conda activate base
+              </code>
+            </pre>
+          </div>
           <div class="code__block code__block--notabs">
             <pre class="code code--block">
               <code>
@@ -64,7 +72,7 @@
               </code>
             </pre>
           </div>
-          <h4>1.2.1 - Troubleshooting</h4>
+          <h4>1.1.2.1 - Troubleshooting</h4>
           <p>If you encounter some error code, most likely one of two things is going wrong:</p>
           <li>1. You don't have pip installed on your computer. To solve this, run the following command to install pip.
             <div class="code__block code__block--notabs">
@@ -88,7 +96,24 @@
             Just make sure you are running Terminal using Administrator privilidges.
             <h2>1.2 - Install Heiya (Mandatory)</h2>
             <p>Installation of Heiya should be fairly straight forward if you did the previous section or already have everything setup.</p>
-            <p>Simply run the following command in <strong>Terminal with administrator privileges</strong>.</p>
+            <p>Note: <strong>If you used Anaconda</strong>, run the following in <strong>Anaconda Prompt</strong> (Help in 1.2.2):</p>
+            <div class="code__block code__block--notabs">
+              <pre class="code code--block">
+                <code>
+                  conda activate base
+                </code>
+              </pre>
+            </div>
+            <div class="code__block code__block--notabs">
+              <pre class="code code--block">
+                <code>
+                  pip install heiya
+                </code>
+              </pre>
+            </div>
+            <p>Once finished, it should look something like bwlow.</p>
+            <img src="./img/anaconda_prompt_finished.png" width="100%" height="100%">
+            <p>If you <strong>configured on your own</strong>, simply run the following command in <strong>Terminal with administrator privileges</strong> (Help in 1.2.1).</p>
             <div class="code__block code__block--notabs">
               <pre class="code code--block">
                 <code>
@@ -103,74 +128,157 @@
             <h4>Windows</h4>
             <p>On Windows 11, there are many ways to run Terminal (Or Powershell/Command Prompt if you are on Windows 10 or below, it is the same thing).</p>
             <p>Simply right click the Windows icon on the bottom left of your screen, and press the option to <strong>Run Terminal (or Powershell) as Admin</strong>.</p>
+            <h3>1.2.2 - How to open Anaconda Prompt?</h3>
+            <p>
+              Open Anaconda Navigator, look for something that says "Anaconda Prompt/Powershell Prompt/CMD.exe Prompt". 
+              Basically, anything with the name "Prompt" will probably do.
+            </p>
+            <p>Press "Launch".</p>
+            <img src="./img/anaconda_prompt.png" width="100%" height="100%">
         </li>
         </section>
 
-        <h1>Below are work in progress.</h1>
-
         <section class="js-section">
           <h1 class="section__title">Chapter 2: Get Started</h1>
-          <p>For the most common usage, assuming you are a photographer that has some JPGs (either you shoot JPG or export from Lightroom as JPG), and you want to convert them to HEIF or AVIF so you can import them into your iCloud/Google Photos so these photos take very little storage.</p>
-          <h3 class="section__title">Installation</h3>
+          <p>
+            For the most common usage, assuming you are a photographer that has some JPGs (either you shoot JPG or export from Lightroom as JPG), 
+            and you want to convert them to HEIF or AVIF so you can import them into your iCloud/Google Photos so these photos take very little storage. 
+            Here's how to quickly get yourself started.
+          </p>
+          <p>
+            Note: This looks long because is a babysit tutorial that covers in great detail. Once you get it, it is brainless to run.
+          </p>
+          <h2>2.1 - Open Jupyter Notebook</h2>
+          <p>
+            First, open Anaconda Navigator App on your computer (Assuming you already have it installed), and open "Jupyter Notebook" inside the app.
+            If you did not do the optional stuff, I assume you know what you are doing and just open a Jupyter Notebook page.
+          </p>
+          <p>
+            A webpage should open. 
+            Navigate to a place where you want to save this tool, and click "New - Notebook Python 3" on the top right of the Jupyter Notebook web page.  
+          </p>
+          <img src="./img/make_new_jupyter_notebook.png" width="100%" height="100%">
+          <p>
+            A new webpage that looks something like this should appear. First click "Untitled" to name it to something you like, for example, "jpg_hei".
+            In the below right after "In [  ]: 1" is the place where you can enter some code.
+          </p>
+          <img src="./img/new_jupyter_notebook.png" width="100%" height="100%">
+          <h2>2.2 - Make the Tool</h2>
+          <p>
+            Go ahead to <a href="https://github.com/wu-hongjun/heiya/blob/main/jpg_hei.ipynb">jpg_hei.ipynb (Link)</a> on Github, copy all the code and paste them into your newly created notebook.
+          </p>
+          <p>Your notebook should already be saved, if not, do a quick "File - Save As" on the Notebook tool bar to make sure your notebook is created.</p>
+          <h2>2.3 - Run the Code</h2>
+          <p>Now, use Finder(macOS)/File Explorer(Windows) to go to the place where you store all of the JPGs you desire to convert.</p>
+          
+          <h3>2.3.1 - Copy the directory address.</h3>
+          <p>Copy the directory address to your clipboard.</p>
+          <li>
+            Windows: File Explorer -> Go to your target folder -> Single Click address bar -> Copy the file path in address bar.
+          </li>
+          <li>
+            macOS: Finder -> Go to your target folder -> Hold Alt (File path should apper in bottom left) -> Right click on folder and copy file path.
+          </li>
+          <p>Now, you can do one of two things:</p>
+          <li>
+            If you have pyperclip installed by following 1.1.2, there is nothing you need to do.
+          </li>
+          <li>
+            If you did not install pyperclip, delete the following lines and paste the address into <code>source_dir</code>:
+            <div class="code__block code__block--notabs">
+              <pre class="code code--block">
+                <code>
+                  import pyperclip as clip
+
+                  # Get the image location directly from the clipboard
+                  if source_dir == "":
+                  source_dir = clip.paste()
+                </code>
+              </pre>
+            </div>
+            <p>In the end, it looks something like this:</p>
+            <img src="./img/deleted_pyperclip_cell.png" width="100%" height="100%">
+          </li>
+          <p>
+            Now, you might have something similar to this stored in your clipboard. 
+            I did it on a SD card on Windows, your mileage might vary, especially on macOS.
+          </p>
           <div class="code__block code__block--notabs">
             <pre class="code code--block">
               <code>
-                $ scribbler  ——config
-                  {
-                    “encryption”: true, 
-                    “highlighting“: true,
-                    “prettyTable”: false,
-                    “font”: [“Helvetica”, “sans-serif”],
-                    “folder”: “~/Desktop“
-                  }
+                D:\DCIM\207_FUJI
               </code>
             </pre>
           </div>
-        </section>
+          <h3>2.3.2 -  Run the code.</h3>
+          <p>Make sure to select the cell by single clicking the code.</p>
+          <p>Navigate to your tool bar, and "Cells - Run Cells" to run the newly copied code. </p>
+          <p>Additionally, you can use <strong>Shift + Enter</strong> on your keyboard to make this operation faster.</p>
+          <p>Heiya should automatically start to convert the JPGs, and will print the progress down below.</p>
+          <img src="./img/pyperclip_convert_finished.png" width="100%" height="100%">
+          <p>Horray!</p>
+          <h2>2.4 - Conclusion</h2>
+          <p>In this section, I hope I did a fair job detailing basic usage of this tool and accounted for any obstacles you might encounter using it.</p>
+          <p>From now on, all you need to do is open the tool in Jupyter notebook, copy the folder path, and run the code. Should be pretty brainless.</p>
+          <p>If you have any question, feel free to contact me by going to <a href="https://i.hongjunwu.com/contact/">my contact page (Link)</a>.</p>
+      
         <section class="js-section">
-          <h3 class="section__title">Configuration</h3>
-          <p>Learn how to configure settings for Scribbler, such as your syntax highlighting preference and the default saving folder location.</p>
+          <h3 class="section__title">Advanced Usage</h3>
+          <p>For now, I have limited time and effort, so any advanced usage and how to use other functions of Heiya can be found in the following notebooks.</p>
           <table id="customers">
             <tr>
-              <th>Options</th>
-              <th>Value</th>
-              <th>Default</th>
+              <th>Name</th>
+              <th>Link</th>
             </tr>
             <tr>
-              <td>encryption</td>
-              <td>encrypt all notes before saving. If turned on, it requires password to open the file.</td>
-              <td>false</td>
+              <td>Heiya Basic Demo</td>
+              <td><a href="https://github.com/wu-hongjun/heiya/blob/main/heiya_basic_demo.ipynb">https://github.com/wu-hongjun/heiya/blob/main/heiya_basic_demo.ipynb</a></td>
             </tr>
             <tr>
-              <td>highlighting</td>
-              <td>Show syntax highlight on markdown text.</td>
-              <td>true</td>
-            </tr>
-            <tr>
-              <td>prettyTable</td>
-              <td>Render table with Scribbler’s pretty table style.</td>
-              <td>true</td>
+              <td>Heiya Full Demo</td>
+              <td><a href="https://github.com/wu-hongjun/heiya/blob/main/heiya_full_demo.ipynb">https://github.com/wu-hongjun/heiya/blob/main/heiya_full_demo.ipynb</a></td>
             </tr>
           </table>
-          <p>Malis percipitur an pro. Pro aperiam persequeris at, at sonet sensibus mei, id mea postulant definiebas concludaturque. Id qui malis abhorreant, mazim melius quo et. At eam altera dolorum, case dicant lobortis ius te, ad vel affert oportere reprehendunt. Quo no verterem deseruisse, mea brute postea te, ne per tacimates suavitate vituperatoribus.</p>
+          <hr />
+        </section>
+
+        <section class="js-section">
+          <h3 class="section__title">Heiya Functions</h3>
+          <p>This chapter will be the home to document all the functions available to call independently so you can build your own pipeline.</p>
+          <p>It is work in progress, and most information you are looking for can be found in the <strong>Advanced Usage</strong> section above.</p>
           <hr />
         </section>
         <section class="js-section">
-          <h3 class="section__title">Keybindings</h3>
-          <p>Lorem ipsum dolor sit amet, scripta tibique indoctum sit ei, mel inani aeterno ad. Facer oratio ex per. At eam movet verear, in sea brute patrioque disputando, usu nonumes torquatos an. Ex his quaerendum intellegebat, ut vel homero accusam. Eum at debet tibique, in vocibus temporibus adversarium sed. Porro verear eu vix, ne usu tation vituperata.</p>
-          <p>Malis percipitur an pro. Pro aperiam persequeris at, at sonet sensibus mei, id mea postulant definiebas concludaturque. Id qui malis abhorreant, mazim melius quo et. At eam altera dolorum, case dicant lobortis ius te, ad vel affert oportere reprehendunt. Quo no verterem deseruisse, mea brute postea te, ne per tacimates suavitate vituperatoribus.</p>
-          <p>Malis percipitur an pro. Pro aperiam persequeris at, at sonet sensibus mei, id mea postulant definiebas concludaturque. Id qui malis abhorreant, mazim melius quo et. At eam altera dolorum, case dicant lobortis ius te, ad vel affert oportere reprehendunt. Quo no verterem deseruisse, mea brute postea te, ne per tacimates suavitate vituperatoribus.</p>
-          <hr />
+          <h3 class="section__title">To-Do</h3>
+          <p>Some potential improvements that can be done include:</p>
+          <li>
+            Currently Heiya only supports converting to 8-bit (Which is mostly enough, since JPG can do at most 8 bit). 
+            However, enabling Conversion to 10bit(HEIF) or 12bit(AVIF) is a welcomed improvement.
+          </li>
+          <li>
+            One potential solution to enable higher bitrate is to deprecate <code>pillow_heif</code> and instead rewrite the entire tool using <code>imagemagick</code>. 
+            Although I shall note that if you have a camera that already shoots HEIF, you probably don't need this tool.
+          </li>
+          <li>
+            Some additional video encoding capabilities is under active development by wrapping <code>ffmpeg</code>.
+          </li>
+          <li>
+            Of course, a Heiya GUI would be nice.
+          </li>
+          <li>
+            An automatic deployment of the tool might be a welcomed addition too.
+          </li>
         </section>
+
         <section class="js-section">
-          <h3 class="section__title">Issues</h3>
-          <p>Lorem ipsum dolor sit amet, scripta tibique indoctum sit ei, mel inani aeterno ad. Facer oratio ex per. At eam movet verear, in sea brute patrioque disputando, usu nonumes torquatos an. Ex his quaerendum intellegebat, ut vel homero accusam. Eum at debet tibique, in vocibus temporibus adversarium sed. Porro verear eu vix, ne usu tation vituperata.</p>
-          <p>Malis percipitur an pro. Pro aperiam persequeris at, at sonet sensibus mei, id mea postulant definiebas concludaturque. Id qui malis abhorreant, mazim melius quo et. At eam altera dolorum, case dicant lobortis ius te, ad vel affert oportere reprehendunt. Quo no verterem deseruisse, mea brute postea te, ne per tacimates suavitate vituperatoribus.</p>
+          <h3 class="section__title">License</h3>
+          <p>Heiya is distributed in the license in <a href="https://github.com/wu-hongjun/heiya/blob/main/LICENSE.txt">LICENSE.txt</a>.</p>
+          <hr />
         </section>
       </article>
     </div>
 
-    <footer class="footer">Scribbler is a free HTML template created exclusively for <a href="https://tympanus.net/codrops/?p=33686" target="_blank" class="link link--light">Codrops</a>.</footer>
+    <footer class="footer">Copyright <a href="https://hongjunwu.com" target="_blank" class="link link--light">Hongjun Wu</a>, all rights reserved, 2022.</footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     <script src="scribbler.js"></script>
