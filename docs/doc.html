@@ -9,7 +9,16 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900" rel="stylesheet">
     <link rel="stylesheet" href="scribbler-global.css">
     <link rel="stylesheet" href="scribbler-doc.css">
-    <link rel="author" href="humans.txt">
+    <link rel="author" href="http://hongjunwu.com">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script> -->
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>hljs.highlightAll();</script>
+
+    <script src="scribbler.js"></script>
   </head>
   <body>
     <div class="doc__bg"></div>
@@ -165,8 +174,41 @@
           <img src="./img/new_jupyter_notebook.png" width="100%" height="100%">
           <h2>2.2 - Make the Tool</h2>
           <p>
-            Go ahead to <a href="https://github.com/wu-hongjun/heiya/blob/main/jpg_hei.ipynb">jpg_hei.ipynb (Link)</a> on Github, copy all the code and paste them into your newly created notebook.
+            Copy all the code and paste them into your newly created notebook. This code is also available on Github in <a href="https://github.com/wu-hongjun/heiya/blob/main/jpg_hei.ipynb">jpg_hei.ipynb (Link)</a>. 
           </p>
+          <div class="code__block code__block--notabs">
+            <pre class="code code--block">
+              <code class="language-python">
+                """
+                JPG to HEIF/AVIF
+                Convert JPG shoot by camera to High Efficiency Images with metadata to import to iCloud photo library.
+
+                How To:
+                Step 1: Run "pip install heiya" from Terminal (If you have not already done so).
+                Step 2: Copy the folder directory where all the JPGs are stored.
+                    Windows: File Explorer -> Go to your target folder -> Single Click address bar -> Copy the file path in address bar.
+                    macOS: Finder -> Go to your target folder -> Hold Alt (File path should apper in bottom left) -> Right click on folder and copy file path.
+                Step 3: Run this cell and wait for it to finish, it will print out progress below.
+                """
+
+                import heiya
+                import pyperclip as clip
+
+                # Custom file path override, usually just leave it blank if you use pyperclip
+                source_dir = ""
+
+                # Get the image location directly from the clipboard
+                if source_dir == "":
+                    source_dir = clip.paste()
+                    
+                # This will convert all the JPG in source_dir to HEI.
+                # source_format = 0 -> JPG. (You don't need to change this for most of the time, you can also set to 1 for PNG.)
+                # target_format = 0 -> AVIF (For smaller file size but less compatible, requires iOS 16/macOS Ventura or higher).
+                # target_format = 1 -> HEIF (For best compatibility but slightly larger file size, requires additional extension to open on Windows).
+                heiya.to_hei.convert_image_in_dir_to_hei(source_dir, source_format=0, target_format=1)
+              </code>
+            </pre>
+          </div>
           <p>Your notebook should already be saved, if not, do a quick "File - Save As" on the Notebook tool bar to make sure your notebook is created.</p>
           <h2>2.3 - Run the Code</h2>
           <p>Now, use Finder(macOS)/File Explorer(Windows) to go to the place where you store all of the JPGs you desire to convert.</p>
@@ -279,8 +321,5 @@
     </div>
 
     <footer class="footer">Copyright <a href="https://hongjunwu.com" target="_blank" class="link link--light">Hongjun Wu</a>, all rights reserved, 2022.</footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-    <script src="scribbler.js"></script>
   </body>
 </html>
