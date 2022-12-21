@@ -1,3 +1,8 @@
+"""
+It's ugly, I know, what a shame.
+But it works, and I don't have time to make it more elegant...
+"""
+
 EXT_TIF = (".tif", ".tiff", ".TIF", ".TIFF", "tif", "tiff", "TIF", "TIFF")
 EXT_AVIF = (".AVIF", ".avif", ".AV1F", ".av1f", "AVIF", "avif", "AV1F", "av1f")
 EXT_HEIF = (".HEIF", ".heif", ".HIF", ".hif", ".HEIC", ".heic", "HEIF", "heif", "HIF", "hif", "HEIC", "heic")
