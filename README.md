@@ -38,7 +38,7 @@ pip install heiya
 """
 JPG to HEIF/AVIF
 Convert JPG shoot by camera to High Efficiency Images with metadata to import to iCloud photo library.
-Find this notebook in https://github.com/wu-hongjun/heiya/blob/main/jpg_avif.ipynb
+Find this notebook in https://github.com/wu-hongjun/heiya/blob/main/jpg_hei.ipynb
 
 How To:
 Step 1: Run "pip install heiya" from Terminal (If you have not already done so).
