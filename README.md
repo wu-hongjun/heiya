@@ -34,7 +34,37 @@ pip install heiya
 ```
 
 ## Examples
-* If you just want to convert your JPG to AVIF/HEIF, check out the [Heiya Basic Demo Notebook](https://github.com/wu-hongjun/heiya/blob/main/heiya_basic_demo.ipynb).
+```python
+"""
+JPG to HEIF/AVIF
+Convert JPG shoot by camera to High Efficiency Images with metadata to import to iCloud photo library.
+Find this notebook in https://github.com/wu-hongjun/heiya/blob/main/jpg_avif.ipynb
+
+How To:
+Step 1: Run "pip install heiya" from Terminal (If you have not already done so).
+Step 2: Copy the folder directory where all the JPGs are stored.
+    Windows: File Explorer -> Go to your target folder -> Single Click address bar -> Copy the file path in address bar.
+    macOS: Finder -> Go to your target folder -> Hold Alt (File path should apper in bottom left) -> Right click on folder and copy file path.
+Step 3: Run this cell and wait for it to finish, it will print out progress below.
+"""
+
+import heiya
+import pyperclip as clip
+
+# Custom file path override, usually just leave it blank if you use pyperclip
+source_dir = ""
+
+# Get the image location directly from the clipboard
+if source_dir == "":
+    source_dir = clip.paste()
+    
+# This will convert all the JPG in source_dir to HEI.
+# source_format = 0 -> JPG. (You don't need to change this for most of the time, you can also set to 1 for PNG.)
+# target_format = 0 -> AVIF (For smaller file size but less compatible, requires iOS 16/macOS Ventura or higher).
+# target_format = 1 -> HEIF (For best compatibility but slightly larger file size, requires additional extension to open on Windows).
+heiya.to_hei.convert_image_in_dir_to_hei(source_dir, source_format=0, target_format=1)
+```
+* Some basic operations can be found in [Heiya Basic Demo Notebook](https://github.com/wu-hongjun/heiya/blob/main/heiya_basic_demo.ipynb).
 * A complete set of heiya examples can be found in the [Heiya Full Demo Notebook](https://github.com/wu-hongjun/heiya/blob/main/heiya_full_demo.ipynb).
 
 ## To-Do & Help Needed
