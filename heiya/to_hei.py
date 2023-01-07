@@ -8,6 +8,7 @@ import heiya.extensions as extensions
 import heiya.tools as tools
 
 import os
+import sys
 from os import listdir
 from os.path import dirname, basename
 
@@ -50,7 +51,7 @@ def convert_image_to_hei(source_image, target_format=0):
 
     # Export file using the meta data information
     img.save(output_file, exif=meta)
-    
+
     return output_file
  
     
@@ -78,6 +79,7 @@ def convert_image_in_dir_to_hei(source_dir, source_format=0, target_format=0):
 
         # Manipulate each tif image.
         for source_file in source_file_list:
+            
             source_file_path = os.path.join(source_dir, source_file)
             
             image_counter += 1
@@ -96,8 +98,9 @@ def convert_image_in_dir_to_hei(source_dir, source_format=0, target_format=0):
                 log = "TIF -> HEIF " + progress + ": " + output_file
             print(log)
 
-    except Exception as e:
-        print("Error with exception: " + str(e))  
+    except:
+        err = sys.exc_info()   
+        print("Error '%s' happened on line %d of to_hei.py." % (err[1], err[2].tb_lineno))  
 
 
 def convert_all_sub_folders_to_hei(source_dir, source_format=0, target_format=0, depth=0):
@@ -113,8 +116,9 @@ def convert_all_sub_folders_to_hei(source_dir, source_format=0, target_format=0,
     for sub_dir in sub_dirs:
         try:
             convert_image_in_dir_to_hei(sub_dir, source_format, target_format)
-        except Exception as e:
-            print("Error:", e)
+        except:
+            err = sys.exc_info()   
+            print("Error '%s' happened on line %d of to_hei.py." % (err[1], err[2].tb_lineno))  
 
 
 def video_to_h265(source_video, output=None, postpend="_h265", output_extension = ".mp4", subtitle=None, hevc_toolbox=False, nvenc=False):
