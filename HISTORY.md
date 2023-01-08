@@ -1,5 +1,8 @@
 # Change log
 
+## [2.3.0] - 2023-01-08
+- Added auto H265 encoding capabilities. Updated example pipeline in `pipeline.ipynb`.
+
 ## [2.2.2] - 2022-12-5
 - Added minor support to non dotted extensions in heiya.extensions.
 
