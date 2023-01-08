@@ -9,6 +9,7 @@ import heiya.tools as tools
 
 import os
 import sys
+import logging
 from os import listdir
 from os.path import dirname, basename
 
@@ -119,16 +120,16 @@ def convert_all_sub_folders_to_hei(source_dir, source_format=0, target_format=0,
         except:
             err = sys.exc_info()   
             print("Error '%s' happened on line %d of to_hei.py." % (err[1], err[2].tb_lineno))  
+ 
 
-
-def video_to_h265(source_video, output=None, postpend="_h265", output_extension = ".mp4", subtitle=None, hevc_toolbox=False, nvenc=False):
+def video_to_h265(source_video, output=None, postpend="_h265", output_extension = ".mp4", subtitle=None):
     """
     Experimental feature.
     """
     # Separate a full file path into directory, file name, and extension
     directory = dirname(source_video)
     file_name  = basename(source_video).split(".")[0] 
-    extension = basename(source_video).split(".")[1]
+    extension = basename(source_video).split(".")[-1]
 
     # Register the pillow HEI opener
     if "." + extension not in extensions.EXT_H264 and extension not in extensions.EXT_H265:
@@ -137,20 +138,71 @@ def video_to_h265(source_video, output=None, postpend="_h265", output_extension 
     if not output:
         output = os.path.join(directory, file_name + postpend + output_extension)
 
-    if hevc_toolbox:
-        encoder = "hevc_videotoolbox"
-    elif nvenc:
-        encoder = "hevc_nvenc"
-    else:
-        encoder = "libx265"
+    logging.info("Transcoding {0} to {1}".format(source_video, output))
 
     if subtitle:
         subtitle_cmd = "-vf subtitle=\"" + subtitle + "\""
     else:
         subtitle_cmd = ""
         
-    # command = "ffmpeg -i \""+ str(source_video) + "\" -c:v " + encoder + subtitle_cmd + " -vtag hvc1 -c:a copy \"" + output + "\""
-    command = "ffmpeg -i \"{0}\" -c:v {1} {2} -vtag hvc1 -c:a copy \"{3}\"".format(source_video, encoder, subtitle_cmd, output)
-    print(command)
+    command = "ffmpeg -y -i \"{0}\" -c:v libx265 {1} -vtag hvc1 -c:a copy \"{2}\"".format(source_video, subtitle_cmd, output)
 
-    return os.system(command)
+    logging.info("Command: ", command)
+
+    return output, os.system(command)
+
+
+def convert_video_in_dir_to_h265(source_dir, source_format=0, target_format=0, postpend="_h265", subtitle=None):
+    """
+    Convert all the files with an extension of ".tif" or ".jpg" into target format.
+    Args:
+        source_dir (str): A directory that contain image files.
+        source_format (int): 0 = JPG, 1 = TIF.
+        target_format (int): Convert the input image to HEI. 0 = AVIF, 1 = HEIF.
+    """
+    print("Beginning video H265 encoding operation in: " + source_dir)
+    try:
+        # Filter out hidden cache files starts with "._" created by Capture One
+            
+        if source_format == 0:
+            source_format_ext = extensions.EXT_MP4
+        elif source_format == 1:
+            source_format_ext = extensions.EXT_MKV
+
+        source_file_list = [file for file in listdir(source_dir) if file.endswith(source_format_ext) and not file.startswith("._")]  
+
+        # Keep track of image count for displaying progress.
+        image_count = len(source_file_list)
+        image_counter = 0
+
+        # Manipulate each tif image.
+        for source_file in source_file_list:
+            
+            source_file_path = os.path.join(source_dir, source_file)
+            
+            image_counter += 1
+            progress = str(image_counter) + "/" + str(image_count) + "(" + str(int((image_counter / image_count)*100)) + "%)"
+
+            # Print log.
+            if source_format == 0 and target_format == 0:
+                log = "MP4 -> MP4(H265) " + progress + ": " + str(source_file)
+            if source_format == 1 and target_format == 0:
+                log = "MKV -> MP4(H265) " + progress + ": " + str(source_file)
+            if source_format == 0 and target_format == 1:
+                log = "JPG -> HEIF " + progress + ": " + str(source_file)
+            if source_format == 1 and target_format == 1:
+                log = "TIF -> HEIF " + progress + ": " + str(source_file)
+            print(log)
+
+            output_file, status_code = video_to_h265(source_file_path, output=None, postpend=postpend, output_extension = ".mp4", subtitle=None)
+
+            if status_code == 0:
+                print("    Successfully transcoded new video at: " + str(output_file))
+            else:
+                print("    Error occured when transcoding new video at: " + str(output_file))
+
+    except:
+        err = sys.exc_info()   
+        print("Error '%s' happened on line %d of to_hei.py." % (err[1], err[2].tb_lineno))  
+
+
