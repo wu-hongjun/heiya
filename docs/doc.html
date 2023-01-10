@@ -212,10 +212,65 @@
           <p>Heiya should automatically start to convert the JPGs, and will print the progress down below.</p>
           <img src="./img/pyperclip_convert_finished.png" width="100%" height="100%">
           <p>Horray! Now just drag all the HEIF/AVIF files into Apple Photos/Google Photos and enjoy amazing photos that takes up very little storage!</p>
+          
           <h2>2.4 - Conclusion</h2>
           <p>In this section, I hope I did a fair job detailing basic usage of this tool and accounted for any obstacles you might encounter using it.</p>
           <p>From now on, all you need to do is open the tool in Jupyter notebook, copy the folder path, and run the code. Should be pretty brainless.</p>
           <p>If you have any question, feel free to contact me by going to <a href="https://i.hongjunwu.com/contact/">my contact page (Link)</a>.</p>
+
+          <h2>2.5 - H.264 to H.265 Video Encoding</h2>
+          <p>Many cameras nowadays shoot video in the H.264 codec, which is compatible to most devices, but the legacy encoding yields a larger file size.</p>
+          <p>
+            More advanced cameras can shoot H.265 codec (Some call it HEVC codec), 
+            which is a more modern codec that yields significantly smaller file size, 
+            and modern hardware and operating system now have better support for the Codec 
+            (Although you do need to pay a small amount of money to use it on Windows, Apple devices have no problems).
+          </p>
+          <p>With a little setup, you can transcode video using similar workflow mentioned above in the image processing section.</p>
+
+          <h3>2.5.1 - Install FFMPEG to System Path</h3>
+          <p>Heiya will call an video encoder called FFMPEG to transcode your videos, which is not bundled in Heiya and require manual setup.</p>
+          <p>Fortunately, other people have already written comprehensive guides on how to do this, so please set up FFMPEG using these very helpful guides.</p>
+          <li>
+            <a href="https://adamtheautomator.com/install-ffmpeg/">Back to the Basics: Use and Install FFmpeg, Nicholas Xuan Nguyen, TALearning, 2022.</a>
+          </li>
+          
+          <h3>2.5.2 - Make the Tool</h3>
+          <p>
+            Similar to the above <code>heiya.to_hei.convert_image_in_dir_to_hei()</code> function that will convert all the images in a directory to HEI, 
+            as of version <code>2.3.0</code>, 
+            you can now convert all video in a directory to MP4 that are encoded using the H.265 codec using a similar function <code>heiya.to_hei.convert_video_in_dir_to_h265()</code>.
+          </p>
+          <p>This code is also available in the demo pipeline: <a href="https://github.com/wu-hongjun/heiya/blob/main/pipeline.ipynb">pipeline.ipynb</a></p>
+          <div class="code__block code__block--notabs">
+            <pre class="code code--block">
+              <code class="language-python">
+                """
+                MP4 (H264) to MP4 (H265)
+                Convert MP4/MKV (H264) to MP4(H265) using libx265 Software Encoding.
+                """
+
+                import heiya
+                import pyperclip as clip
+
+                # Custom file path override, usually just leave it blank if you use pyperclip
+                source_dir = ""
+
+                # Get the image location directly from the clipboard
+                if source_dir == "":
+                    source_dir = clip.paste()
+                    
+                # This will convert all the MP4/MKV in source_dir to .MP4 using H265 codec.
+                # source_format = 0 -> MP4. (You don't need to change this for most of the time, you can also set to 1 for MKV.)
+                heiya.to_hei.convert_video_in_dir_to_h265(source_dir, source_format=0, postpend="_h265")
+              </code>
+            </pre>
+          </div>
+          <p>
+            Note that <code>heiya.to_hei.convert_video_in_dir_to_h265()</code> has a new parameter called <code>postpend="_h265</code>. 
+            This parameter will postpend "_h265" after the file name of the generated file.
+            This is because often you will have the original file also having the ".MP4" extension and we don't want to overwrite the original.
+          </p>
       
         <section class="js-section">
           <h3 class="section__title">Chapter 3: Advanced Usage</h3>
