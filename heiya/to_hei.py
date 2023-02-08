@@ -1,4 +1,4 @@
-# Image to High Efficiency Image (AVIF/HEIF) Converter 
+# Image to High Efficiency Image (AVIF/HEIC) Converter 
 
 from PIL import Image
 import piexif
@@ -21,7 +21,7 @@ def convert_image_to_hei(source_image, target_format=0):
     
     Args:
         source_image (str): A full file path of an image.
-        target_format (int): The target format you want to convert to. 0 = AVIF, 1 = HEIF
+        target_format (int): The target format you want to convert to. 0 = AVIF, 1 = HEIC
         
     Returns:
         (str) Full file path of the generated file.
@@ -37,7 +37,7 @@ def convert_image_to_hei(source_image, target_format=0):
         output_file = directory + "/" + file_name + ".AVIF"
     elif target_format == 1:
         pillow_heif.register_heif_opener()
-        output_file = directory + "/" + file_name + ".HEIF"
+        output_file = directory + "/" + file_name + ".HEIC"
     else:
         raise ValueError("No codec is selected, try pass in target_format=0 as an argument.")
 
@@ -62,7 +62,7 @@ def convert_image_in_dir_to_hei(source_dir, source_format=0, target_format=0):
     Args:
         source_dir (str): A directory that contain image files.
         source_format (int): 0 = JPG, 1 = TIF.
-        target_format (int): Convert the input image to HEI. 0 = AVIF, 1 = HEIF.
+        target_format (int): Convert the input image to HEI. 0 = AVIF, 1 = HEIC.
     """
     try:
         # Filter out hidden cache files starts with "._" created by Capture One
@@ -94,9 +94,9 @@ def convert_image_in_dir_to_hei(source_dir, source_format=0, target_format=0):
             if source_format == 1 and target_format == 0:
                 log = "TIF -> AVIF " + progress + ": " + output_file
             if source_format == 0 and target_format == 1:
-                log = "JPG -> HEIF " + progress + ": " + output_file
+                log = "JPG -> HEIC " + progress + ": " + output_file
             if source_format == 1 and target_format == 1:
-                log = "TIF -> HEIF " + progress + ": " + output_file
+                log = "TIF -> HEIC " + progress + ": " + output_file
             print(log)
 
     except:
@@ -110,7 +110,7 @@ def convert_all_sub_folders_to_hei(source_dir, source_format=0, target_format=0,
     Args:
         source_dir (str): A directory that contain image files.
         source_format (int): 0 = JPG, 1 = TIF.
-        target_format (int): 0 = AVIF, 1 = HEIF.
+        target_format (int): 0 = AVIF, 1 = HEIC.
         depth (int): The layer of sub directory to run the program in.
     """
     sub_dirs = tools.find_sub_dirs(source_dir, depth=depth)
@@ -145,20 +145,20 @@ def video_to_h265(source_video, output=None, postpend="_h265", output_extension 
     else:
         subtitle_cmd = ""
         
-    command = "ffmpeg -y -i \"{0}\" -c:v libx265 {1} -vtag hvc1 -c:a copy \"{2}\"".format(source_video, subtitle_cmd, output)
+    command = "ffmpeg -y -i \"{0}\" -map_metadata 0 -c:v libx265 {1} -vtag hvc1 -c:a copy \"{2}\"".format(source_video, subtitle_cmd, output)
 
     logging.info("Command: ", command)
 
     return output, os.system(command)
 
 
-def convert_video_in_dir_to_h265(source_dir, source_format=0, target_format=0, postpend="_h265", subtitle=None):
+def convert_video_in_dir_to_h265(source_dir, source_format=0, override_ext = None, target_format=0, postpend="_h265", subtitle=None):
     """
     Convert all the files with an extension of ".tif" or ".jpg" into target format.
     Args:
         source_dir (str): A directory that contain image files.
         source_format (int): 0 = JPG, 1 = TIF.
-        target_format (int): Convert the input image to HEI. 0 = AVIF, 1 = HEIF.
+        target_format (int): Convert the input image to HEI. 0 = AVIF, 1 = HEIC.
     """
     print("Beginning video H265 encoding operation in: " + source_dir)
     try:
@@ -168,6 +168,9 @@ def convert_video_in_dir_to_h265(source_dir, source_format=0, target_format=0, p
             source_format_ext = extensions.EXT_MP4
         elif source_format == 1:
             source_format_ext = extensions.EXT_MKV
+
+        if override_ext:
+            source_format_ext = override_ext
 
         source_file_list = [file for file in listdir(source_dir) if file.endswith(source_format_ext) and not file.startswith("._")]  
 
@@ -184,14 +187,17 @@ def convert_video_in_dir_to_h265(source_dir, source_format=0, target_format=0, p
             progress = str(image_counter) + "/" + str(image_count) + "(" + str(int((image_counter / image_count)*100)) + "%)"
 
             # Print log.
-            if source_format == 0 and target_format == 0:
-                log = "MP4 -> MP4(H265) " + progress + ": " + str(source_file)
-            if source_format == 1 and target_format == 0:
-                log = "MKV -> MP4(H265) " + progress + ": " + str(source_file)
-            if source_format == 0 and target_format == 1:
-                log = "JPG -> HEIF " + progress + ": " + str(source_file)
-            if source_format == 1 and target_format == 1:
-                log = "TIF -> HEIF " + progress + ": " + str(source_file)
+            if override_ext:
+                log = "H264 Video -> MP4(H265) " + progress + ": " + str(source_file)
+            else:
+                if source_format == 0 and target_format == 0:
+                    log = "MP4 -> MP4(H265) " + progress + ": " + str(source_file)
+                if source_format == 1 and target_format == 0:
+                    log = "MKV -> MP4(H265) " + progress + ": " + str(source_file)
+                if source_format == 0 and target_format == 1:
+                    log = "JPG -> HEIC " + progress + ": " + str(source_file)
+                if source_format == 1 and target_format == 1:
+                    log = "TIF -> HEIC " + progress + ": " + str(source_file)
             print(log)
 
             output_file, status_code = video_to_h265(source_file_path, output=None, postpend=postpend, output_extension = ".mp4", subtitle=None)
