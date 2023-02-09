@@ -157,7 +157,7 @@ def convert_video_in_dir_to_h265(source_dir, source_format=0, override_ext = Non
     Convert all the files with an extension of ".tif" or ".jpg" into target format.
     Args:
         source_dir (str): A directory that contain image files.
-        source_format (int): 0 = JPG, 1 = TIF.
+        source_format (int): 0 = MP4, 1 = MKV.
         target_format (int): Convert the input image to HEI. 0 = AVIF, 1 = HEIC.
     """
     print("Beginning video H265 encoding operation in: " + source_dir)
