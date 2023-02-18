@@ -1,5 +1,8 @@
 # Change log
 
+## [2.3.1] - 2023-02-18
+- Minor improvement on video to H265 encoder, added `-movflags use_metadata_tags` to better preserve metadata in video.
+
 ## [2.3.0] - 2023-01-08
 - Added auto H265 encoding capabilities. Updated example pipeline in `pipeline.ipynb`.
 

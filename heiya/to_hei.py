@@ -145,7 +145,7 @@ def video_to_h265(source_video, output=None, postpend="_h265", output_extension 
     else:
         subtitle_cmd = ""
         
-    command = "ffmpeg -y -i \"{0}\" -map_metadata 0 -c:v libx265 {1} -vtag hvc1 -c:a copy \"{2}\"".format(source_video, subtitle_cmd, output)
+    command = "ffmpeg -y -i \"{0}\" -movflags use_metadata_tags -map_metadata 0 -c:v libx265 {1} -vtag hvc1 -c:a copy \"{2}\"".format(source_video, subtitle_cmd, output)
 
     logging.info("Command: ", command)
 
@@ -165,7 +165,7 @@ def convert_video_in_dir_to_h265(source_dir, source_format=0, override_ext = Non
         # Filter out hidden cache files starts with "._" created by Capture One
             
         if source_format == 0:
-            source_format_ext = extensions.EXT_MP4
+            source_format_ext = extensions.EXT_MP4 + extensions.EXT_MOV
         elif source_format == 1:
             source_format_ext = extensions.EXT_MKV
 
