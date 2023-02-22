@@ -165,9 +165,11 @@ def convert_video_in_dir_to_h265(source_dir, source_format=0, override_ext = Non
         # Filter out hidden cache files starts with "._" created by Capture One
             
         if source_format == 0:
-            source_format_ext = extensions.EXT_MP4 + extensions.EXT_MOV
+            source_format_ext = extensions.EXT_MP4
         elif source_format == 1:
             source_format_ext = extensions.EXT_MKV
+        elif source_format == 2:
+            source_format_ext = extensions.EXT_MOV
 
         if override_ext:
             source_format_ext = override_ext
