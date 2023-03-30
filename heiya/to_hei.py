@@ -71,6 +71,8 @@ def convert_image_in_dir_to_hei(source_dir, source_format=0, target_format=0):
             source_format_ext = extensions.EXT_JPG
         elif source_format == 1:
             source_format_ext = extensions.EXT_TIF
+        else:
+            source_format_ext = extensions.EXT_JPG + extensions.EXT_TIF
 
         source_file_list = [file for file in listdir(source_dir) if file.endswith(source_format_ext) and not file.startswith("._")]  
 
