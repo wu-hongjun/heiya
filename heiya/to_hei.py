@@ -10,8 +10,16 @@ import heiya.tools as tools
 import os
 import sys
 import logging
+import tempfile
 from os import listdir
 from os.path import dirname, basename
+
+def convert_multistrip_to_single(image_path):
+    img = Image.open(image_path)
+    temp_path = tempfile.mktemp(suffix=".tif")
+    img.save(temp_path)
+    return temp_path
+
 
 
 def convert_image_to_hei(source_image, target_format=0):
@@ -29,7 +37,11 @@ def convert_image_to_hei(source_image, target_format=0):
     # Separate a full file path into directory, file name, and extension
     directory = dirname(source_image)
     file_name  = basename(source_image).split(".")[0] 
-    extension = basename(source_image).split(".")[1]
+    extension = basename(source_image).split(".")[1].lower()
+
+    # Check and convert multistrip to single strip if needed
+    if extension in extensions:
+        source_image = convert_multistrip_to_single(source_image)
 
     # Register the pillow HEI opener
     if target_format == 0:
